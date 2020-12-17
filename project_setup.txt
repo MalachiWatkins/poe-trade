@@ -1,0 +1,11 @@
+Django app setup
+
+Main Site
+ -- Home page
+ -- Stash indexing
+ -- Viewing listings
+ -- Item requesting
+ -- View requesting Items
+ -- Create buy orders
+ -- View buy orders
+ -- alerts for buy orders
