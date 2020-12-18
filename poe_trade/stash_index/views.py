@@ -12,6 +12,10 @@ from Atlas_Connection import Atlas_Connect
 # Create your views here.
 
 
+def bootstrap4_index(request):
+    return render(request, 'index.html', {})
+
+
 def stash_index(request):
     context = {}
     cluster = MongoClient(Atlas_Connect)
@@ -26,9 +30,6 @@ def stash_index(request):
     armourCollection = Itemdb["armour"]
     flaskCollection = Itemdb["flasks"]
 
-    collectionList = ['cardsCollection', 'currencyCollection', 'jewelsCollection',
-                      'accessoriesCollection', 'armourCollection', 'gemsCollection', 'weaponsCollection', 'mapsCollection', 'flaskCollection']
-    listLen = len(collectionList)
     currency_list = []
     cards_list = []
     jewels_list = []
@@ -40,20 +41,15 @@ def stash_index(request):
     flask_list = []
     for doc in currencyCollection.find():
         currency_list.append(doc)
-        # x = 0
-        # while x < listLen:
-        #     collection_1 = collectionList[x]
-        #     for document in collection_1.find():
-        #         collection_1.append(document)
-        #     x += 1
-    context['test'] = "this is a test"
-    context['currency'] = currency_list
-    context['cards'] = cardsCollection
-    context['jewels'] = jewelsCollection
-    context['accessories'] = accessoriesCollection
-    context['armour'] = armourCollection
-    context['gems'] = gemsCollection
-    context['weapons'] = weaponsCollection
-    context['maps'] = mapsCollection
-    context['flasks'] = flaskCollection
+    currency_len = len(currency_list)
+    x = 0
+    icon_list = []
+
+    while x < currency_len:
+        currency_post = currency_list[x]
+        currency_icon = currency_post['icon']
+        icon_list.append(currency_icon)
+
+        x += 1
+    context['currency_icon'] = icon_list
     return render(request, 'stash_index.html', context)
