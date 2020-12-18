@@ -53,3 +53,5 @@ def stash_index(request):
         x += 1
     context['currency_icon'] = icon_list
     return render(request, 'stash_index.html', context)
+
+# setup another function as a test
