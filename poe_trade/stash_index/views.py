@@ -30,38 +30,25 @@ def stash_index(request):
     armourCollection = Itemdb["armour"]
     flaskCollection = Itemdb["flasks"]
 
-    currency_list = []
-    cards_list = []
-    jewels_list = []
-    accessories_list = []
-    armour_list = []
-    gems_list = []
-    weapons_list = []
-    maps_list = []
-    flask_list = []
+    currency_post_list = []
     for doc in currencyCollection.find():
-        currency_list.append(doc)
-    currency_len = len(currency_list)
+        currency_post_list.append(doc)
+    currency_len = len(currency_post_list)
+    currency_post = []
     x = 0
-    icon_list = []
-    note_list = []
-    type_list = []
-    post_t = []
     while x < currency_len:
-        currency_post = currency_list[x]
-        currency_icon = currency_post['icon']
-        currency_note = currency_post['note']
-        currency_type = currency_post['typeLine']
-        post_t.append(currency_post)
-        note_list.append(currency_note)
-        type_list.append(currency_type)
-        icon_list.append(currency_icon)
-        # context[''] =
+        currencypost = currency_post_list[x]
+        currency_post.append(currencypost)
         x += 1
-    context['post_t'] = post_t
-    context['currency_icon'] = icon_list
-    context['note'] = note_list
-    context['type'] = type_list
+    context['currencyPost'] = currency_post
+
     return render(request, 'stash_index.html', context)
+
+
+def test(request):
+    context = {}
+    a = 'a'
+
+    return render(request, 'test.html', context)
 
 # setup another function as a test

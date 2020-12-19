@@ -10,10 +10,9 @@
 
 <body>
   {% block body %}
-  {% for post in post_t %}
+  {% for post in currencyPost %}
 
   <p><img src="{{ post.icon }}" alt="No icon found">Name: {{ post.typeLine }}, Price: {{ post.note }}, Stasksize: {{ post.stackSize }}, Ilvl: {{ post.ilvl }}, Account Name: {{ post.accountName}}</p>
-
 
   {% endfor %}
   {% endblock %}
