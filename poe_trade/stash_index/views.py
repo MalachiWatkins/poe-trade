@@ -44,14 +44,24 @@ def stash_index(request):
     currency_len = len(currency_list)
     x = 0
     icon_list = []
-
+    note_list = []
+    type_list = []
+    post_t = []
     while x < currency_len:
         currency_post = currency_list[x]
         currency_icon = currency_post['icon']
+        currency_note = currency_post['note']
+        currency_type = currency_post['typeLine']
+        post_t.append(currency_post)
+        note_list.append(currency_note)
+        type_list.append(currency_type)
         icon_list.append(currency_icon)
-
+        # context[''] =
         x += 1
+    context['post_t'] = post_t
     context['currency_icon'] = icon_list
+    context['note'] = note_list
+    context['type'] = type_list
     return render(request, 'stash_index.html', context)
 
 # setup another function as a test
