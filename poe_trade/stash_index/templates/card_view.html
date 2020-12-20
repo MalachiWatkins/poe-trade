@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en" dir="ltr">
+
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  {% block body %}
+  {% for post in cardPost %}
+
+  <p><img src="{{ post.icon }}" alt="No icon found">Name: {{ post.typeLine }}, Price: {{ post.note }}, Stasksize: {{ post.stackSize }}, Ilvl: {{ post.ilvl }}, Account Name: {{ post.accountName}}</p>
+
+  {% endfor %}
+  {% endblock %}
+</body>
+
+</html>

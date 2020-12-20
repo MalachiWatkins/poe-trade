@@ -6,6 +6,7 @@ urlpatterns = [
     # path('', views., name=''),
     path('', views.home, name='home'),
     path('currencyview', views.currencyView, name='currencyView'),
+    path('cardview', views.cardView, name='cardView'),
     url(r'', views.bootstrap4_index, name="base"),
 
 ]
