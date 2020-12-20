@@ -9,26 +9,32 @@ import time
 import random
 import re
 from Atlas_Connection import Atlas_Connect
-# Create your views here.
+
+
+cluster = MongoClient(Atlas_Connect)
+Itemdb = cluster["POE_DOCS"]
+cardsCollection = Itemdb["Cards"]
+accessoriesCollection = Itemdb["accessories"]
+gemsCollection = Itemdb["gems"]
+jewelsCollection = Itemdb["Jewels"]
+mapsCollection = Itemdb["Maps"]
+weaponsCollection = Itemdb["weapons"]
+armourCollection = Itemdb["armour"]
+flaskCollection = Itemdb["flasks"]
 
 
 def bootstrap4_index(request):
-    return render(request, 'index.html', {})
+    return render(request, 'base.html', {})
 
 
-def stash_index(request):
+def home(request):
     context = {}
-    cluster = MongoClient(Atlas_Connect)
-    Itemdb = cluster["POE_DOCS"]
+    return render(request, 'home.html', context)
+
+
+def currencyView(request):
+    context = {}
     currencyCollection = Itemdb["Currency"]
-    cardsCollection = Itemdb["Cards"]
-    accessoriesCollection = Itemdb["accessories"]
-    gemsCollection = Itemdb["gems"]
-    jewelsCollection = Itemdb["Jewels"]
-    mapsCollection = Itemdb["Maps"]
-    weaponsCollection = Itemdb["weapons"]
-    armourCollection = Itemdb["armour"]
-    flaskCollection = Itemdb["flasks"]
 
     currency_post_list = []
     for doc in currencyCollection.find():
@@ -42,13 +48,4 @@ def stash_index(request):
         x += 1
     context['currencyPost'] = currency_post
 
-    return render(request, 'stash_index.html', context)
-
-
-def test(request):
-    context = {}
-    a = 'a'
-
-    return render(request, 'test.html', context)
-
-# setup another function as a test
+    return render(request, 'currency_view.html', context)
