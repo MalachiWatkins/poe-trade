@@ -32,20 +32,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def currencyView(request):
+def currencyView(request):  # Gets all currency data from the db and sends it to frontend
     context = {}
-    currencyCollection = Itemdb["Currency"]
+    currencyCollection = Itemdb["Currency"]  # gets currency collection
+    currency_post_list = []  # a list to store all the currency related posts
 
-    currency_post_list = []
-    for doc in currencyCollection.find():
+    for doc in currencyCollection.find():  # finds all the currency documents and appends them to a list
         currency_post_list.append(doc)
     currency_len = len(currency_post_list)
-    currency_post = []
-    x = 0
-    while x < currency_len:
-        currencypost = currency_post_list[x]
-        currency_post.append(currencypost)
-        x += 1
-    context['currencyPost'] = currency_post
-
+    # sends the post data to frontend
+    context['currencyPost'] = currency_post_list
     return render(request, 'currency_view.html', context)
