@@ -14,15 +14,12 @@
 
   <div style="padding-top: 100px">
     <div class="container" style="color: #757575">
-      {% for post in currencyPost %}
       <div class="icon">
-        {% if post.stackSize %}
-        <p>Worked</p>
-        <p style="font-size:25px"><img src="{{ post.icon }}" alt="No Icon!"> {{ post.accountName}}: {{ post.typeLine }}, Stasksize: {{ post.stackSize }}</p>
-
+        {% for x in data %}
+        <p style="font-size:25px"><img src=" {{ x.icon }}" alt="No icon found"> {{ x.accountname }}: {{ x.type }}</p>
+        {% endfor %}
       </div>
 
-      {% endfor %}
     </div>
   </div>
 </center>
