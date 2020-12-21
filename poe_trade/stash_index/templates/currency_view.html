@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-<html lang="en" dir="ltr">
+{% block head %}
+<style media="screen">
+  div.icon {
+    text-align: left;
+  }
+</style>
+
+{% endblock %}
+{% block body %}
+<center>
 
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
+  <div style="padding-top: 100px">
+    <div class="container" style="color: #757575">
+      {% for post in currencyPost %}
+      <div class="icon">
+        {% if post.stackSize %}
+        <p>Worked</p>
+        <p style="font-size:25px"><img src="{{ post.icon }}" alt="No Icon!"> {{ post.accountName}}: {{ post.typeLine }}, Stasksize: {{ post.stackSize }}</p>
 
-<body>
-  {% block body %}
-  {% for post in currencyPost %}
+      </div>
 
-  <p><img src="{{ post.icon }}" alt="No icon found">Name: {{ post.typeLine }}, Price: {{ post.note }}, Stasksize: {{ post.stackSize }}, Ilvl: {{ post.ilvl }}, Account Name: {{ post.accountName}}</p>
-
-  {% endfor %}
-  {% endblock %}
-</body>
-
-</html>
+      {% endfor %}
+    </div>
+  </div>
+</center>
+{% endblock %}
