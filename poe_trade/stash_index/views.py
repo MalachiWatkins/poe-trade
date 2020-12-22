@@ -22,6 +22,9 @@ weaponsCollection = Itemdb["weapons"]
 armourCollection = Itemdb["armour"]
 flaskCollection = Itemdb["flasks"]
 
+# TODO: finish other functions (dont worrie about the html just create them)
+# get home paage working similar to the offical poe trade site
+
 
 def bootstrap4_index(request):
     return render(request, 'base.html', {})
@@ -42,9 +45,7 @@ def currencyView(request):  # Gets all currency data from the db and sends it to
     data_list = ['icon', 'accountName',
                  'typeLine', 'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
     x = 0
-    # "icon": single_post['icon'],
-    # "accountname": single_post['accountName'],
-    # "type": single_post['typeLine'],
+
     while x < len(currency_raw_post):
         single_post = currency_raw_post[x]
         post_data = {}
@@ -54,17 +55,7 @@ def currencyView(request):  # Gets all currency data from the db and sends it to
             except KeyError:
                 pass
         processed_data.append(post_data)
-        #     post_data = {
-        #         "icon": single_post['icon'],
-        #         "accountname": single_post['accountName'],
-        #         "type": single_post['typeLine'],
-        #         "stack": single_post['stackSize'],
-        #         "price": single_post['note'],
-        #         "ilvl": single_post['ilvl'],
-        #     }
-        #
-        #     processed_data.append(post_data)
-        #     print(processed_data)
+
         x += 1
 
     context['data'] = processed_data
