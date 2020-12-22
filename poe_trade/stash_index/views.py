@@ -39,15 +39,20 @@ def currencyView(request):  # Gets all currency data from the db and sends it to
     processed_data = []
     for doc in currencyCollection.find():
         currency_raw_post.append(doc)
+    data_list = ['icon', 'accountName',
+                 'typeLine', 'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
     x = 0
+    # "icon": single_post['icon'],
+    # "accountname": single_post['accountName'],
+    # "type": single_post['typeLine'],
     while x < len(currency_raw_post):
         single_post = currency_raw_post[x]
-        post_data = {
-            "icon": single_post['icon'],
-            "accountname": single_post['accountName'],
-            "type": single_post['typeLine'],
-        }
-        print()
+        post_data = {}
+        for key in data_list:
+            try:
+                post_data[key] = single_post[key]
+            except KeyError:
+                pass
         processed_data.append(post_data)
         #     post_data = {
         #         "icon": single_post['icon'],
@@ -61,7 +66,7 @@ def currencyView(request):  # Gets all currency data from the db and sends it to
         #     processed_data.append(post_data)
         #     print(processed_data)
         x += 1
-        #
+
     context['data'] = processed_data
     return render(request, 'currency_view.html', context)
 
@@ -74,15 +79,3 @@ def currencyView(request):  # Gets all currency data from the db and sends it to
 #         card_post_list.append(doc)
 #     context['cardPost'] = card_post_list
 #     return render(request, 'card_view.html', context)
-
-#
-#
-#
-# class test(View):
-#
-#     def get(self, request):
-#         return currencyView(request)
-#         # return render(request, '')
-#
-#     def post(self, request):
-#         return HttpResponse('Class based view')
