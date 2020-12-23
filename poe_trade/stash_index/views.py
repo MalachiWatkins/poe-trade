@@ -14,6 +14,7 @@ from Atlas_Connection import Atlas_Connect
 cluster = MongoClient(Atlas_Connect)
 Itemdb = cluster["POE_DOCS"]
 currencyCollection = Itemdb["Currency"]
+cardsCollection = Itemdb["Cards"]
 accessoriesCollection = Itemdb["accessories"]
 gemsCollection = Itemdb["gems"]
 jewelsCollection = Itemdb["Jewels"]
@@ -28,6 +29,7 @@ context = {}
 
 def data_processing(type, data_list):
     global processed_data
+    global context
     raw_post = []
     processed_data = []
     for doc in type.find():
@@ -43,7 +45,7 @@ def data_processing(type, data_list):
                 pass
         processed_data.append(post_data)
         x += 1
-
+    context['data'] = processed_data
     return
 
 
@@ -57,18 +59,14 @@ def home(request):
 
 
 def currencyView(request):  # Gets all currency data from the db and sends it to frontend
-    datalist = ['icon', 'accountName', 'typeLine',
-                'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
-    data_processing(type=currencyCollection, data_list=datalist)
-    context['data'] = processed_data
+    currency_datalist = ['icon', 'accountName', 'typeLine',
+                         'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
+    data_processing(type=currencyCollection, data_list=currency_datalist)
     return render(request, 'currency_view.html', context)
 
-#
-# def cardView(request):
-#     context = {}
-#     cardsCollection = Itemdb["Cards"]
-#     card_post_list = []
-#     for doc in cardsCollection.find():
-#         card_post_list.append(doc)
-#     context['cardPost'] = card_post_list
-#     return render(request, 'card_view.html', context)
+
+def cardView(request):
+    card_datalist = ['icon', 'accountName', 'typeLine',
+                     'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
+    data_processing(type=cardsCollection, data_list=card_datalist)
+    return render(request, 'card_view.html', context)
