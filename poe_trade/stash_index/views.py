@@ -25,6 +25,7 @@ flaskCollection = Itemdb["flasks"]
 context = {}
 # TODO: finish other functions (dont worrie about the html just create them)
 # get home paage working similar to the offical poe trade site
+# Im taking a break for a day my head hurts and i have important things to do
 
 
 def data_processing(type):
