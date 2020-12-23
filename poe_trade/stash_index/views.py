@@ -27,9 +27,10 @@ context = {}
 # get home paage working similar to the offical poe trade site
 
 
-def data_processing(type, data_list):
-    global processed_data
+def data_processing(type):
     global context
+    data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrText', 'ilvl',
+                 'explicitMods', 'implicitMods', 'note', 'baseType', 'typeLine', 'flavourText', 'x', 'y', 'corrupted', 'properties', 'sockets', 'influences', 'requirements']
     raw_post = []
     processed_data = []
     for doc in type.find():
@@ -59,14 +60,45 @@ def home(request):
 
 
 def currencyView(request):  # Gets all currency data from the db and sends it to frontend
-    currency_datalist = ['icon', 'accountName', 'typeLine',
-                         'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
-    data_processing(type=currencyCollection, data_list=currency_datalist)
+    data_processing(type=currencyCollection)
     return render(request, 'currency_view.html', context)
 
 
 def cardView(request):
-    card_datalist = ['icon', 'accountName', 'typeLine',
-                     'stackSize', 'note', 'ilvl', 'stashname', 'stashid', 'x', 'y']
-    data_processing(type=cardsCollection, data_list=card_datalist)
+    data_processing(type=cardsCollection)
     return render(request, 'card_view.html', context)
+
+
+def jewelsView(request):
+    data_processing(type=jewelsCollection)
+    return render(request, 'jewels_view.html', context)
+
+
+def mapsView(request):
+    data_processing(type=mapsCollection)
+    return render(request, 'map_view.html', context)
+
+
+def accessoriesView(request):
+    data_processing(type=accessoriesCollection)
+    return render(request, 'accessories_view.html', context)
+
+
+def armourView(request):
+    data_processing(type=armourCollection)
+    return render(request, 'armour_view.html', context)
+
+
+def flaskView(request):
+    data_processing(type=flaskCollection)
+    return render(request, 'flask_view.html', context)
+
+
+def gemsView(request):
+    data_processing(type=gemsCollection)
+    return render(request, 'gems_view.html', context)
+
+
+def weaponsView(request):
+    data_processing(type=weaponsCollection)
+    return render(request, 'weapons_view.html', context)
