@@ -15,6 +15,8 @@ urlpatterns = [
     path('flaskview', views.flaskView, name='flaskView'),
     path('gemsview', views.gemsView, name='gemsView'),
     path('weaponsview', views.weaponsView, name='weaponsView'),
+    path('buyorder', views.buyorder, name='buyorder'),
+    path('formsub', views.formsub, name='formsub'),
     url(r'', views.bootstrap4_index, name="base"),
 
 ]

@@ -11,8 +11,13 @@ import random
 import re
 from django.http import HttpResponse
 from Atlas_Connection import Atlas_Connect
+from django.views.decorators.csrf import ensure_csrf_cookie
+from .forms import buyform
+from django.http import HttpResponseRedirect
+
 cluster = MongoClient(Atlas_Connect)
 Itemdb = cluster["POE_DOCS"]
+buyorderCollection = Itemdb["buyorder"]
 currencyCollection = Itemdb["Currency"]
 cardsCollection = Itemdb["Cards"]
 accessoriesCollection = Itemdb["accessories"]
@@ -23,9 +28,10 @@ weaponsCollection = Itemdb["weapons"]
 armourCollection = Itemdb["armour"]
 flaskCollection = Itemdb["flasks"]
 context = {}
-# TODO: finish other functions (dont worrie about the html just create them)
 # get home paage working similar to the offical poe trade site
-# Im taking a break for a day my head hurts and i have important things to do
+# create a buy order process with an app that alerts you when what you wantis in stock
+# create a place where you can downlod the app
+# 2345612344 currency Exalted orb 120 chaos
 
 
 def data_processing(type):
@@ -103,3 +109,20 @@ def gemsView(request):
 def weaponsView(request):
     data_processing(type=weaponsCollection)
     return render(request, 'weapons_view.html', context)
+
+
+@ensure_csrf_cookie
+def buyorder(request):
+    if request.method == 'POST':
+        form = buyform(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['custom_id'])
+            print(form.cleaned_data['item_name'])
+            return HttpResponseRedirect('/formsub')
+    else:
+        form = buyform()
+    return render(request, 'buy_order.html', {'form': form})
+
+
+def formsub(request):
+    return render(request, 'forsub.html', context)

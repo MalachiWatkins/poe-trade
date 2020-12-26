@@ -34,6 +34,9 @@
             {% else %}
             <p class="card-text">No Price!</p>
             {% endif %}
+            {% for exp in x.explicitMods %}
+            {{ exp }}
+            {% endfor %}
             <p>{{ x.descrText }}</p>
             <div class="input-group mb-3">
               <div class="input-group-prepend">

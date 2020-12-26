@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<center>
+  <div style="padding-top: 100px">
+    <div class="container" style="color: #757575">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col">
+            <p>{{ form.custom_id }}</p>
+            <p>{{ form.item_type }}</p>
+            <p>{{ form.item_name }}</p>
+            <p>{{ form.Item_price }}</p>
+          </div>
+          <p></p>
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+</center>
+{% endblock %}
