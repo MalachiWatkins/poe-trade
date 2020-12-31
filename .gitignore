@@ -9,6 +9,7 @@
 /poe_trade/poe_trade/settings.py
 __pycache__/
 /poe_trade/Atlas_Connection.py
+/poe-trade/name_index/ac.py
 
 # Distribution / packaging
 .Python

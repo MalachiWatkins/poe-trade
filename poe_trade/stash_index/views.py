@@ -20,13 +20,13 @@ Itemdb = cluster["POE_DOCS"]
 buyorderCollection = Itemdb["buyorder"]
 currencyCollection = Itemdb["Currency"]
 cardsCollection = Itemdb["Cards"]
-accessoriesCollection = Itemdb["accessories"]
-gemsCollection = Itemdb["gems"]
+accessoriesCollection = Itemdb["Accessories"]
+gemsCollection = Itemdb["Gems"]
 jewelsCollection = Itemdb["Jewels"]
 mapsCollection = Itemdb["Maps"]
-weaponsCollection = Itemdb["weapons"]
-armourCollection = Itemdb["armour"]
-flaskCollection = Itemdb["flasks"]
+weaponsCollection = Itemdb["Weapons"]
+armourCollection = Itemdb["Armour"]
+flaskCollection = Itemdb["Flasks"]
 context = {}
 # get home paage working similar to the offical poe trade site
 # create a buy order process with an app that alerts you when what you wantis in stock
