@@ -1,1 +1,1 @@
-a
+self.assert_(boolean expression, 'message')a
