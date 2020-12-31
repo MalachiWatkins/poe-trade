@@ -118,7 +118,7 @@ def buyorder(request):
         form = buyform(request.POST)
         if form.is_valid():
             post = {'custom_id': form.cleaned_data['custom_id'],
-                    'item_type': form.cleaned_data['item_type'], 'item_name': form.cleaned_data['item_name'], 'item_price': form.cleaned_data['Item_price'], }
+                    'collection_type': form.cleaned_data['collection_type'], 'item_name': form.cleaned_data['item_name'], 'item_price': form.cleaned_data['Item_price'], }
             buyorderCollection.insert_one(post)
             print('incert one')
             return HttpResponseRedirect('/formsub')

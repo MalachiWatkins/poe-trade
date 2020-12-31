@@ -12,9 +12,9 @@
         {% csrf_token %}
         <div class="row">
           <div class="col">
-            <p>If N/A leave blank</p>
+            <p>If N/A put n/a</p>
+            <p>Type of item: {{ form.collection_type }}</p>
             <p>{{ form.custom_id }}</p>
-            <p>{{ form.item_type }}</p>
             <p>{{ form.item_name }}</p>
             <p>{{ form.Item_price }}</p>
           </div>
