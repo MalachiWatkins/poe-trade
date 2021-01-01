@@ -9,6 +9,7 @@ import json
 import time
 import random
 import re
+# i have a headace and wanna die
 while True:
     with open("next_change_id.txt") as file:
         change_id = file.read()
