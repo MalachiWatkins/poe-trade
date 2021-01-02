@@ -17,8 +17,12 @@ def name(list_items, item_length):
     while x < item_length:
         items_in_index = list_items[x]
         item_name = items_in_index['typeLine']
-
+        if item_name not in cached_results:
+            cached_results.append()
         x += 1
+    # figure out how to bundel and store all the names
+    # possibly using json file
+    # and this is only for one request so find a way to check the file for dupes if so dont add
     return
 
 
