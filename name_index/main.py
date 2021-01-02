@@ -9,6 +9,19 @@ import json
 import time
 import random
 import re
+
+
+def name(list_items, item_length):
+    cached_results = []
+    x = 0
+    while x < item_length:
+        items_in_index = list_items[x]
+        item_name = items_in_index['typeLine']
+
+        x += 1
+    return
+
+
 # i have a headace and wanna die
 while True:
     with open("next_change_id.txt") as file:
@@ -28,3 +41,14 @@ while True:
     f = open("next_change_id.txt", "w")
     f.write(next_change_id)
     f.close()
+    x = 0
+    while x < list_length:
+        # loops trough the stash data list
+        list_index = json_data[x]
+        # filters out anything but the league you are wanting data from
+        # this can be anything before items in the json data or nothing at all it just makes the data alot smaller
+        # if list_index['league'] == 'Heist':
+        stashname = list_index['stash']
+        list_items = list_index['items']
+        item_length = len(list_items)
+        name(list_items=list_items, item_length=item_length)
