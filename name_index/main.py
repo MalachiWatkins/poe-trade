@@ -15,23 +15,46 @@ import pdb
 # check if the new name is in the json if it is pass if not append and overwrite json with the new dict
 
 
+def index(name_list, stored_name_list):
+    no_dupe_list = []
+    res = not bool(name_list)
+    if res == False:  # if the new name list is empty
+        # loop through both list and check if a name from name list is in there
+        x = 0
+        while x < len(name_list):
+            if name_list[x] not in stored_name_list:
+                no_dupe_list.append(name_list[x])
+            x += 1
+    whole_list = stored_name_list + no_dupe_list
+    complete_list = []
+    for i in whole_list:
+        if i not in complete_list:
+            complete_list.append(i)
+    if res == False:
+        dictionary = {'Names': complete_list}
+        json_object = json.dumps(dictionary, indent=4)
+        with open('data.json', 'w') as outfile:
+            outfile.write(json_object)
+            print('wrote')
+            time.sleep(.5)
+    return
+
+
 def name(list_items, item_length):
     name_list = []
+    stored_name_list = []
     x = 0
     while x < item_length:
         items_in_index = list_items[x]
         item_base = items_in_index['typeLine']
         item_name = items_in_index['name']
         name_list.append(item_base)
-
         x += 1
-
-    res = not bool(name_list)
-    if res == False:
-        dictionary = {'Names': name_list}
-        json_object = json.dumps(dictionary, indent=4)
-        with open('data.json', 'a') as outfile:
-            outfile.write(json_object)
+    with open('data.json') as json_file:
+        data = json.load(json_file)
+        for name in data['Names']:
+            stored_name_list.append(name)
+    index(name_list=name_list, stored_name_list=stored_name_list)
     return
 
 
@@ -64,12 +87,10 @@ while True:  # loops infinitely
             # loops trough the stash data list
             list_index = json_data[x]
             # grabs all the item data form the stashes in that what ever filter you set
-            acc_name = list_index['accountName']
             list_items = list_index['items']
-            stash_id = list_index['id']
-            stash_name = list_index['stash']
             # gets length of the item data list
             item_length = len(list_items)
+            # print(item_length)
             # loops through the item list
             name(list_items=list_items, item_length=item_length)
             x += 1
