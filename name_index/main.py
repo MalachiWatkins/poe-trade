@@ -1,58 +1,59 @@
 from connect import Atlas_Connect
-import time
-from configparser import ConfigParser
 import pymongo
 from pymongo import MongoClient
-import pprint
 import requests
 import json
 import time
-import random
-import re
 import pdb
 # pdb.set_trace()
-# use wirte mode and load the json bedore hand
-# check if the new name is in the json if it is pass if not append and overwrite json with the new dict
 
 
-def index(name_list, stored_name_list):
+def index(name_list, stored_name_list):  # combinds new and stored names and removes dupes
     no_dupe_list = []
     res = not bool(name_list)
-    if res == False:  # if the new name list is empty
-        # loop through both list and check if a name from name list is in there
+    if res == False:  # checks if list is empty so process is not for nothing
         x = 0
         while x < len(name_list):
+            # first check for dupes
             if name_list[x] not in stored_name_list:
+                # appends all the names not in the json data
                 no_dupe_list.append(name_list[x])
             x += 1
+    # combines all the json names and the names not in the json
     whole_list = stored_name_list + no_dupe_list
     complete_list = []
+    # second check for dupes
+    # this process is done twice because some times some dupes get through
     for i in whole_list:
         if i not in complete_list:
             complete_list.append(i)
-    if res == False:
+    if res == False:  # another checj if the list is empty
+        # creates a dictionary with the complete list
         dictionary = {'Names': complete_list}
+        # turns the dictionary into a json object
         json_object = json.dumps(dictionary, indent=4)
-        with open('data.json', 'w') as outfile:
-            outfile.write(json_object)
-            print('wrote')
+        with open('data.json', 'w') as outfile:  # opens data.json in write mode
+            outfile.write(json_object)  # writes the json object to the file
             time.sleep(.5)
     return
 
 
-def name(list_items, item_length):
+def name(list_items, item_length):  # grabs all new names form response and all stored names
     name_list = []
     stored_name_list = []
     x = 0
+    # grabs all the new names form the response
     while x < item_length:
         items_in_index = list_items[x]
-        item_base = items_in_index['typeLine']
         item_name = items_in_index['name']
+        # appends all the new names form the response
         name_list.append(item_base)
         x += 1
+    # opens data.jsom and grabs all the stored names
     with open('data.json') as json_file:
         data = json.load(json_file)
         for name in data['Names']:
+            # appends all the names to a list
             stored_name_list.append(name)
     index(name_list=name_list, stored_name_list=stored_name_list)
     return
