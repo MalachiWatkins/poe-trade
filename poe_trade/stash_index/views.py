@@ -29,10 +29,6 @@ armourCollection = Itemdb["Armour"]
 flaskCollection = Itemdb["Flasks"]
 context = {}
 # get home paage working similar to the offical poe trade site
-# create a buy order process with an app that alerts you when what you wantis in stock
-# create a place where you can downlod the app
-# 2345612344 currency Exalted orb 120 chaos
-# taking a break for a day need sleep after work
 
 
 def data_processing(type):

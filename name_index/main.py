@@ -6,7 +6,7 @@ import json
 import time
 import pdb
 # pdb.set_trace()
-# taking a day off
+# need too get working on the desktop web ap
 
 
 def index(name_list, stored_name_list):  # combinds new and stored names and removes dupes
