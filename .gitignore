@@ -10,6 +10,7 @@
 /poe-trade/name_index/ac.py
 __pycache__/
 /poe_trade/Atlas_Connection.py
+/name_index/node_modules/
 
 # Distribution / packaging
 .Python
