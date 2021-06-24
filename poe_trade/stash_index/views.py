@@ -54,7 +54,6 @@ def data_processing(type):
                                   socket_group['sColour']]
                         item_socket_list.append(s_list)
                     # item socket list
-                    socket_list_parsed = []
                     socket_list_0 = []
                     socket_list_1 = []
                     socket_list_2 = []
@@ -66,14 +65,30 @@ def data_processing(type):
                         socket = item_socket_list[y]
                         socket_groups = socket[0]
                         socket_colour = socket[1]
-                        i = 0
-                        while i < 6:
-                            if socket_groups == str(i):
-
-                            i = +1
-
+                        if socket_groups == 0:
+                            socket_list_0.append(socket_colour)
+                        elif socket_groups == 1:
+                            socket_list_1.append(socket_colour)
+                        elif socket_groups == 2:
+                            socket_list_2.append(socket_colour)
+                        elif socket_groups == 3:
+                            socket_list_3.append(socket_colour)
+                        elif socket_groups == 4:
+                            socket_list_4.append(socket_colour)
+                        elif socket_groups == 5:
+                            socket_list_5.append(socket_colour)
+                        else:
+                            pass
                         y += 1
-                    post_data[key] = s_post
+                    socket_list_partial = [
+                        socket_list_0, socket_list_1, socket_list_2, socket_list_3, socket_list_4, socket_list_5]
+                    # socket_list_parsed = [len(socket_list_0), len(socket_list_1), len(
+                    #     socket_list_2), len(socket_list_3), len(socket_list_4), len(socket_list_5)]
+                    # print(socket_list_partial[0] + '~~~~~' + socket_list_partial[1] + socket_list_partial[2] +
+                    #       socket_list_partial[3] + socket_list_partial[4] + socket_list_partial[5])
+                    # print('~~~~~~~~~~~~~~~~~~~~~')
+
+                    post_data[key] = socket_list_partial
                 else:
                     post_data[key] = single_post[key]
             except KeyError:
@@ -139,7 +154,7 @@ def weaponsView(request):
     return render(request, 'weapons_view.html', context)
 
 
-@ensure_csrf_cookie
+@ ensure_csrf_cookie
 def buyorder(request):
     if request.method == 'POST':
         form = buyform(request.POST)

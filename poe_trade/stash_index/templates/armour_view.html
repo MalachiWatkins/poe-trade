@@ -11,6 +11,13 @@
     height: 75%;
     width: 75%;
   }
+
+  div.linkcont {
+    justify-content: center;
+    height: 25%;
+    width: 75%;
+    background-color: #000000
+  }
 </style>
 
 {% endblock %}
@@ -34,9 +41,13 @@
             {% else %}
             <p class="card-text">No Price!</p>
             {% endif %}
+
             <div class="">
+              <p>Link Groups</p>
               {% for y in x.sockets %}
-              <p>Sockets:{{ y }}</p>
+              {% if y %}
+              <p>{{ y.0 }} {{ y.1 }} {{ y.2 }} {{ y.3 }} {{ y.4 }} {{ y.5 }}</p>
+              {% endif %}
               {% endfor %}
             </div>
             <div class="">

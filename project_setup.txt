@@ -12,7 +12,7 @@ Main Site
 
 
 
-Account name
-name of item
-base type
-catagory type
+LOGIC FOR FINDING LINKS IN SOCKETS
+[[0, 'B'], [0, 'B'], [0, 'B'], [0, 'G'], [0, 'B'], [0, 'B']]
+
+if group num = 0,1,2,3,4,5
