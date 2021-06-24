@@ -26,6 +26,9 @@
 
 
   <div style="padding-top: 100px">
+    <div class="">
+
+    </div>
     <div class="invscontainer">
       <div class="icon">
 
@@ -36,12 +39,7 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ x.stackSize }} {{ x.typeLine }}</h5>
-            {% if x.note %}
-            <p class="card-text">Price: {{ x.note }}</p>
-            {% else %}
-            <p class="card-text">No Price!</p>
-            {% endif %}
-
+            <img src="{{ x.icon }}" alt="No Icon!">
             <div class="">
               <p>Link Groups</p>
               {% for y in x.sockets %}
@@ -50,6 +48,17 @@
               {% endif %}
               {% endfor %}
             </div>
+            {% if x.note %}
+            <p class="card-text">Price: {{ x.note }}</p>
+            {% else %}
+            <p class="card-text">No Price!</p>
+            {% endif %}
+            <div class="">
+              {% for g in x.implicitMods %}
+              <p>Implicit: {{ g }}</p>
+              {% endfor %}
+            </div>
+
             <div class="">
               {% for i in x.explicitMods %}
               <p>{{ i }}</p>
@@ -57,6 +66,9 @@
             </div>
 
             <p>{{ x.descrText }}</p>
+
+          </div>
+          <div class="card-footer text-muted">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <button type="button" class="btn btn-secondary" onclick="copy()">Copy</button>
@@ -70,9 +82,6 @@
               {% endif %}
 
             </div>
-          </div>
-          <div class="card-footer text-muted">
-            <img src="{{ x.icon }}" alt="No Icon!">
           </div>
         </div>
 
