@@ -10,35 +10,9 @@ Main Site
  -- View buy orders
  -- alerts for buy orders
 
- <p style="font-size:25px"><img src=" {{ post.icon }}" alt="No icon found"> {{ post.accountName}}: {{ post.typeLine }}, {{ post.note }}, Stasksize: {{ post.stackSize }}, Ilvl: {{ post.ilvl }},</p>
- {% elif post.note %}
- <p style="font-size:25px"><img src="{{ post.icon }}" alt="No Icon!">Stasksize: 1</p>
 
 
- what i need to do
-
-
-
- seperate post
-
- redo info
-
- append to a list
-
-  send
-  {% for post in currencyPost %}
-  <div class="icon">
-    {% if post.note == '' %}
-    <p>no price data</p>
-    <p style="font-size:25px"><img src=" {{ post.icon }}" alt="No icon found"> {{ post.accountName}}: {{ post.typeLine }}, {{ post.stackSize }}, No Price data!, Ilvl: {{ post.ilvl }},</p>
-    {% elif post.ilvl == 0 %}
-    <p>no ilvl</p>
-    <p style="font-size:25px"><img src=" {{ post.icon }}" alt="No icon found"> {{ post.accountName}}: {{ post.typeLine }}, {{ post.stackSize }}, No Price data!</p>
-    <p></p>
-
-    {% endif %}
-
-
-  </div>
-
-  {% endfor %}
+Account name
+name of item
+base type
+catagory type

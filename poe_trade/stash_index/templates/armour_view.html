@@ -35,6 +35,11 @@
             <p class="card-text">No Price!</p>
             {% endif %}
             <div class="">
+              {% for y in x.sockets %}
+              <p>Sockets:{{ y }}</p>
+              {% endfor %}
+            </div>
+            <div class="">
               {% for i in x.explicitMods %}
               <p>{{ i }}</p>
               {% endfor %}

@@ -35,6 +35,7 @@ def data_processing(type):
     global context
     data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrText', 'ilvl',
                  'explicitMods', 'implicitMods', 'note', 'baseType', 'typeLine', 'flavourText', 'x', 'y', 'corrupted', 'properties', 'sockets', 'influences', 'requirements']
+    Socket_list = ['group', 'sColour']
     raw_post = []
     processed_data = []
     for doc in type.find():
@@ -45,9 +46,39 @@ def data_processing(type):
         post_data = {}
         for key in data_list:
             try:
-                post_data[key] = single_post[key]
+                if key == 'sockets':
+                    item_socket_list = []
+                    s_post = single_post[key]
+                    for socket_group in s_post:
+                        s_list = [socket_group['group'],
+                                  socket_group['sColour']]
+                        item_socket_list.append(s_list)
+                    # item socket list
+                    socket_list_parsed = []
+                    socket_list_0 = []
+                    socket_list_1 = []
+                    socket_list_2 = []
+                    socket_list_3 = []
+                    socket_list_4 = []
+                    socket_list_5 = []
+                    y = 0
+                    while y < len(item_socket_list):
+                        socket = item_socket_list[y]
+                        socket_groups = socket[0]
+                        socket_colour = socket[1]
+                        i = 0
+                        while i < 6:
+                            if socket_groups == str(i):
+
+                            i = +1
+
+                        y += 1
+                    post_data[key] = s_post
+                else:
+                    post_data[key] = single_post[key]
             except KeyError:
                 pass
+
         processed_data.append(post_data)
         x += 1
     context['data'] = processed_data
@@ -121,6 +152,11 @@ def buyorder(request):
     else:
         form = buyform()
     return render(request, 'buy_order.html', {'form': form})
+
+
+def search(request):
+
+    return render(request, 'save.html', context)
 
 
 def formsub(request):
