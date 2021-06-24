@@ -28,14 +28,53 @@ weaponsCollection = Itemdb["Weapons"]
 armourCollection = Itemdb["Armour"]
 flaskCollection = Itemdb["Flasks"]
 context = {}
+link_list_parsed = []
 # get home paage working similar to the offical poe trade site
+
+
+def socket_parsing(key, single_post):
+    # gets socket data and removes the attr field
+    raw_socket_data = []
+    single_socket_post = single_post[key]
+    for socket_group in single_socket_post:
+        single_socket_post = [socket_group['group'],
+                              socket_group['sColour']]
+        raw_socket_data.append(single_socket_post)
+    # socket link list
+    link_0 = []
+    link_1 = []
+    link_2 = []
+    link_3 = []
+    link_4 = []
+    link_5 = []
+    x = 0
+    while x < len(raw_socket_data):
+        single_socket_data = raw_socket_data[x]
+        socket_groups = single_socket_data[0]
+        socket_colour = single_socket_data[1]
+        dict = {
+            0: link_0,
+            1: link_1,
+            2: link_2,
+            3: link_3,
+            4: link_4,
+            5: link_5
+        }
+        for link_key in dict:
+            if link_key == socket_groups:
+                dict[link_key].append(socket_colour)
+        global link_list_parsed
+        link_list_parsed = [link_0, link_1, link_2, link_3, link_4, link_5]
+        x += 1
+
+    return
 
 
 def data_processing(type):
     global context
     data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrText', 'ilvl',
                  'explicitMods', 'implicitMods', 'note', 'baseType', 'typeLine', 'flavourText', 'x', 'y', 'corrupted', 'properties', 'sockets', 'influences', 'requirements']
-    Socket_list = ['group', 'sColour']
+    link = ['group', 'sColour']
     raw_post = []
     processed_data = []
     for doc in type.find():
@@ -47,53 +86,12 @@ def data_processing(type):
         for key in data_list:
             try:
                 if key == 'sockets':
-                    item_socket_list = []
-                    s_post = single_post[key]
-                    for socket_group in s_post:
-                        s_list = [socket_group['group'],
-                                  socket_group['sColour']]
-                        item_socket_list.append(s_list)
-                    # item socket list
-                    socket_list_0 = []
-                    socket_list_1 = []
-                    socket_list_2 = []
-                    socket_list_3 = []
-                    socket_list_4 = []
-                    socket_list_5 = []
-                    y = 0
-                    while y < len(item_socket_list):
-                        socket = item_socket_list[y]
-                        socket_groups = socket[0]
-                        socket_colour = socket[1]
-                        if socket_groups == 0:
-                            socket_list_0.append(socket_colour)
-                        elif socket_groups == 1:
-                            socket_list_1.append(socket_colour)
-                        elif socket_groups == 2:
-                            socket_list_2.append(socket_colour)
-                        elif socket_groups == 3:
-                            socket_list_3.append(socket_colour)
-                        elif socket_groups == 4:
-                            socket_list_4.append(socket_colour)
-                        elif socket_groups == 5:
-                            socket_list_5.append(socket_colour)
-                        else:
-                            pass
-                        y += 1
-                    socket_list_partial = [
-                        socket_list_0, socket_list_1, socket_list_2, socket_list_3, socket_list_4, socket_list_5]
-                    # socket_list_parsed = [len(socket_list_0), len(socket_list_1), len(
-                    #     socket_list_2), len(socket_list_3), len(socket_list_4), len(socket_list_5)]
-                    # print(socket_list_partial[0] + '~~~~~' + socket_list_partial[1] + socket_list_partial[2] +
-                    #       socket_list_partial[3] + socket_list_partial[4] + socket_list_partial[5])
-                    # print('~~~~~~~~~~~~~~~~~~~~~')
-
-                    post_data[key] = socket_list_partial
+                    socket_parsing(key=key, single_post=single_post)
+                    post_data[key] = link_list_parsed
                 else:
                     post_data[key] = single_post[key]
             except KeyError:
                 pass
-
         processed_data.append(post_data)
         x += 1
     context['data'] = processed_data
