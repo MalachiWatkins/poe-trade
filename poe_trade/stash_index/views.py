@@ -99,57 +99,25 @@ def data_processing(type):
 
 
 def bootstrap4_index(request):
-    return render(request, 'base.html', {})
+    url = str(request.get_full_path())
+    index_collection_dict = {  # feel like there is a better way to do this but i did this in 30 min and i have to go to work
+        '/currency': currencyCollection,
+        '/cards': cardsCollection,
+        '/jewel': jewelsCollection,
+        '/map': mapsCollection,
+        '/accessories': accessoriesCollection,
+        '/armour': armourCollection,
+        '/flask': flaskCollection,
+        '/gems': gemsCollection,
+        '/weapons': weaponsCollection,
+    }
+    data_processing(type=index_collection_dict[url])
+    return render(request, 'view.html', context)
 
 
 def home(request):
     context = {}
     return render(request, 'home.html', context)
-
-
-def currencyView(request):  # Gets all currency data from the db and sends it to frontend
-    data_processing(type=currencyCollection)
-    return render(request, 'currency_view.html', context)
-
-
-def cardView(request):
-    data_processing(type=cardsCollection)
-    return render(request, 'card_view.html', context)
-
-
-def jewelsView(request):
-    data_processing(type=jewelsCollection)
-    return render(request, 'jewels_view.html', context)
-
-
-def mapsView(request):
-    data_processing(type=mapsCollection)
-    return render(request, 'map_view.html', context)
-
-
-def accessoriesView(request):
-    data_processing(type=accessoriesCollection)
-    return render(request, 'accessories_view.html', context)
-
-
-def armourView(request):
-    data_processing(type=armourCollection)
-    return render(request, 'armour_view.html', context)
-
-
-def flaskView(request):
-    data_processing(type=flaskCollection)
-    return render(request, 'flask_view.html', context)
-
-
-def gemsView(request):
-    data_processing(type=gemsCollection)
-    return render(request, 'gems_view.html', context)
-
-
-def weaponsView(request):
-    data_processing(type=weaponsCollection)
-    return render(request, 'weapons_view.html', context)
 
 
 @ ensure_csrf_cookie
