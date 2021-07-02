@@ -29,6 +29,7 @@ armourCollection = Itemdb["Armour"]
 flaskCollection = Itemdb["Flasks"]
 context = {}
 link_list_parsed = []
+properies_list = []
 # get home paage working similar to the offical poe trade site
 
 
@@ -70,6 +71,25 @@ def socket_parsing(key, single_post):
     return
 
 
+def properties_parsing(key, single_post):
+    single_property_post = single_post[key]
+    raw_prop_data = []
+    print(single_property_post)
+    print('~~~~~~~~~~~~~~')
+    # for property in single_property_post:
+    #     print(property)
+    #     name = property['name']
+    #     v = property['values']
+    #     if v:
+    #         v_s = v[0]
+    #         values = v_s[0]
+    #         # print(values)
+    #     else:
+    #         pass
+
+    return
+
+
 def data_processing(type):
     global context
     data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrText', 'ilvl',
@@ -85,9 +105,14 @@ def data_processing(type):
         post_data = {}
         for key in data_list:
             try:
-                if key == 'sockets':
+                if key == 'properties':
+                    properties_parsing(key=key, single_post=single_post)
+                    post_data[key] = properies_list
+
+                elif key == 'sockets':
                     socket_parsing(key=key, single_post=single_post)
                     post_data[key] = link_list_parsed
+
                 else:
                     post_data[key] = single_post[key]
             except KeyError:
@@ -98,7 +123,7 @@ def data_processing(type):
     return
 
 
-def bootstrap4_index(request):
+def main_view(request):
     url = str(request.get_full_path())
     index_collection_dict = {  # feel like there is a better way to do this but i did this in 30 min and i have to go to work
         '/currency': currencyCollection,

@@ -35,6 +35,9 @@
             {% else %}
             <p class="card-text">No Price!</p>
             {% endif %}
+            {%if x.properties%}
+            <p>{{ x.properties }}</p>
+            {% endif %}
             {% if x.implicitMods %}
             <div class="">
               {% for g in x.implicitMods %}

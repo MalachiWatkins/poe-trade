@@ -9,6 +9,6 @@ urlpatterns = [
     path('buyorder', views.buyorder, name='buyorder'),
     path('formsub', views.formsub, name='formsub'),
     path('search', views.search, name='search'),
-    url(r'', views.bootstrap4_index, name="base"),
+    url(r'', views.main_view, name="base"),
 
 ]
