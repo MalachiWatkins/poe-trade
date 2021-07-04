@@ -30,6 +30,7 @@ flaskCollection = Itemdb["Flasks"]
 context = {}
 link_list_parsed = []
 properies_list = []
+requirements_list = []
 # get home paage working similar to the offical poe trade site
 
 
@@ -74,25 +75,49 @@ def socket_parsing(key, single_post):
 def properties_parsing(key, single_post):
     single_property_post = single_post[key]
     raw_prop_data = []
-    print(single_property_post)
-    print('~~~~~~~~~~~~~~')
-    # for property in single_property_post:
-    #     print(property)
-    #     name = property['name']
-    #     v = property['values']
-    #     if v:
-    #         v_s = v[0]
-    #         values = v_s[0]
-    #         # print(values)
-    #     else:
-    #         pass
+    master_list = []
+    x = 0
+    while x < len(single_property_post):
+        single_prop = single_property_post[x]
+        name = single_prop['name']
+        values = single_prop['values']
+        if values:
+            values = values[0]
+            values = values[0]
+            parsed_data = name + ': ' + values
+            print(parsed_data)
+            master_list.append(parsed_data)
 
+        x += 1
+        global properies_list
+        properies_list = master_list
+    return
+
+
+def requirements_parsing(key, single_post):
+    single_requirements_post = single_post[key]
+    raw_requirements_data = []
+    master_list = []
+    x = 0
+    while x < len(single_requirements_post):
+        single_requirements = single_requirements_post[x]
+        name = single_requirements['name']
+        values = single_requirements['values']
+        if values:
+            values = values[0]
+            values = values[0]
+            parsed_data = name + ': ' + values
+            master_list.append(parsed_data)
+
+        x += 1
+        global requirements_list
+        requirements_list = master_list
     return
 
 
 def data_processing(type):
     global context
-    data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrText', 'ilvl',
+    data_list = ['stashid', 'stashid', 'accountName', 'icon', 'name', 'stackSize', 'identified', 'descrT`ext', 'ilvl',
                  'explicitMods', 'implicitMods', 'note', 'baseType', 'typeLine', 'flavourText', 'x', 'y', 'corrupted', 'properties', 'sockets', 'influences', 'requirements']
     link = ['group', 'sColour']
     raw_post = []
@@ -112,6 +137,10 @@ def data_processing(type):
                 elif key == 'sockets':
                     socket_parsing(key=key, single_post=single_post)
                     post_data[key] = link_list_parsed
+                    # print(link_list_parsed)
+                elif key == 'requirements':
+                    requirements_parsing(key=key, single_post=single_post)
+                    post_data[key] = requirements_list
 
                 else:
                     post_data[key] = single_post[key]

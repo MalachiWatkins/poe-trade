@@ -18,8 +18,17 @@
           </div>
           {% endif  %}
           <div class="card-body">
-            <h5 class="card-title">{{ x.stackSize }} {{ x.typeLine }}</h5>
+            <h5 class="card-title">{{ x.stackSize }} {{ x.name}}</h5>
+            <p>{{x.typeLine}}</p>
             <img src="{{ x.icon }}" alt="No Icon!">
+
+            <p>Item Level: {{ x.ilvl }}</p>
+            {% for f in x.properties %}
+            <p>{{ f }}</p>
+            {% endfor %}
+            {% for l in x.requirements %}
+            <p>{{ l }}</p>
+            {% endfor %}
             {% if x.sockets %}
             <div class="">
               <p>Link Groups</p>
@@ -35,9 +44,6 @@
             {% else %}
             <p class="card-text">No Price!</p>
             {% endif %}
-            {%if x.properties%}
-            <p>{{ x.properties }}</p>
-            {% endif %}
             {% if x.implicitMods %}
             <div class="">
               {% for g in x.implicitMods %}
@@ -47,6 +53,7 @@
             {% endif %}
             {% if x.explicitMods %}
             <div class="">
+              <p>Explicit</p>
               {% for i in x.explicitMods %}
               <p>{{ i }}</p>
               {% endfor %}
