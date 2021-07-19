@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<center>
+  <div style="padding-top: 100px">
+    <div class="container" style="color: #757575">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col">
+            <p>If N/A leave blank</p>
+            <p>{{ form.accountname }}</p>
+          </div>
+          <p></p>
+        </div>
+        <input type="submit" value="OK">
+      </form>
+    </div>
+  </div>
+
+</center>
+{% endblock %}

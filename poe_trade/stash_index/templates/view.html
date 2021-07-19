@@ -24,10 +24,12 @@
 
             <p>Item Level: {{ x.ilvl }}</p>
             {% for f in x.properties %}
-            <p>{{ f }}</p>
+            {% for ree in f %}
+            <p>{{ ree }}</p>
+            {% endfor %}
             {% endfor %}
             {% for l in x.requirements %}
-            <p>{{ l }}</p>
+            {{ l }}
             {% endfor %}
             {% if x.sockets %}
             <div class="">

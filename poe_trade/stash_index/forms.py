@@ -24,6 +24,5 @@ class buyform(forms.Form):
     Item_price = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Price of the item'}))
 
-# class searchform(form.Forms):
-#     Account Name = forms.CharField(label='Custom ID', max_length=100, widget=forms.TextInput(
-#         attrs={'placeholder': 'Custom Id'}))
+    accountname = forms.CharField(label='ree', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Custom Id'}))
