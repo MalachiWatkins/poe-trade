@@ -25,4 +25,7 @@ class buyform(forms.Form):
         attrs={'placeholder': 'Price of the item'}))
 
     accountname = forms.CharField(label='ree', max_length=100, widget=forms.TextInput(
-        attrs={'placeholder': 'Custom Id'}))
+        attrs={'placeholder': 'Account Name'}))
+
+    formname = forms.CharField(label='', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': '}))

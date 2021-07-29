@@ -59,15 +59,11 @@ def data_processing(type):
 class genView(View):
 
     def get(self, request, type):
-        # type is just a url key
-        # if type == to key from modular_templates then show the urlas a return
         modular_templates = {
-            'url': 'template.html',
-            'url': 'template.html',
-            'url': 'template.html',
-
+            'about': 'about.html',
+            'formsub': 'forsub.html',
         }
-        return
+        return render(request, modular_templates[type], context)
 
 
 def home(request):
@@ -76,10 +72,6 @@ def home(request):
 
 def allview(request):
     return render(request, 'allview.html', context)
-
-
-def about(request):
-    return render(request, 'about.html', context)
 
 
 @ ensure_csrf_cookie
@@ -100,12 +92,9 @@ def buyorder(request):
 @ ensure_csrf_cookie
 def search(request):
     if request.method == 'POST':
-        url = str(request.get_full_path())
-        print(url)
         form = buyform(request.POST)
         if form.is_valid():
             accname = form.cleaned_data['accountname']
-            print(accname)
             return HttpResponseRedirect('/tanks/')
     else:
         form = buyform()

@@ -1,18 +1,23 @@
-Django app setup
-
-Main Site
- -- Home page
- -- Stash indexing
- -- Viewing listings
- -- Item requesting
- -- View requesting Items
- -- Create buy orders
- -- View buy orders
- -- alerts for buy orders
+V.2 Ideas
+Generate Stat filter Forms dynamically with a button
 
 
 
-LOGIC FOR FINDING LINKS IN SOCKETS
-[[0, 'B'], [0, 'B'], [0, 'B'], [0, 'G'], [0, 'B'], [0, 'B']]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Search FORMS:
 
-if group num = 0,1,2,3,4,5
+Things to search with
+
+Account name
+Price
+Item Name
+
+ß
+Identified
+explicitMods find a way to incorperate ranges like phys damage 1-10000
+Item Level
+base type
+properties
+sockets
+requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
