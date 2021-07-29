@@ -56,6 +56,20 @@ def data_processing(type):
     return
 
 
+class genView(View):
+
+    def get(self, request, type):
+        # type is just a url key
+        # if type == to key from modular_templates then show the urlas a return
+        modular_templates = {
+            'url': 'template.html',
+            'url': 'template.html',
+            'url': 'template.html',
+
+        }
+        return
+
+
 def home(request):
     return render(request, 'home.html', context)
 
@@ -65,7 +79,6 @@ def allview(request):
 
 
 def about(request):
-
     return render(request, 'about.html', context)
 
 
