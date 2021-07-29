@@ -107,7 +107,7 @@ main_view_template = []
 
 
 def main_view(request, type, collection):
-    if type == 'yeet':
+    if type == 'sview':
         main_view_template.append('view.html')
         all_view_list = ['currency', 'cards', 'jewel', 'map',
                          'accessories', 'armour', 'flask', 'gems', 'weapons']

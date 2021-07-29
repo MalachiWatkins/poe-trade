@@ -14,5 +14,5 @@ urlpatterns = [
     # path('test', MainClass.as_view()),
     # url(r'', views.main_view, name='mainview'),
     path('view/', views.allview),
-    path('view/<str:collection>/<str:type>/', views.main_view)
+    path('view/<str:type>/<str:collection>/', views.main_view)
 ]
