@@ -24,8 +24,15 @@ class buyform(forms.Form):
     Item_price = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Price of the item'}))
 
-    accountname = forms.CharField(label='ree', max_length=100, widget=forms.TextInput(
-        attrs={'placeholder': 'Account Name'}))
+   accountname = forms.CharField(label='account name', max_length=100, widget=forms.TextInput(
+       attrs = {'placeholder': 'Account Name'}))
 
-    formname = forms.CharField(label='', max_length=100, widget=forms.TextInput(
-        attrs={'placeholder': '}))
+    Is_Identified = forms.CharField(label='', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Is Item Identified'}))
+
+    Item_level = forms.CharField(label='', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Item Level'}))
+    # accountname = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
+    #    accountname.widget.attrs.update(size='40')
+    Item_name = forms.CharField(label='', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Item Name'}))
