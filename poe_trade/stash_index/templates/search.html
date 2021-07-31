@@ -13,12 +13,33 @@
         <div class="row">
           <div class="col">
             <p>If N/A leave blank</p>
-            <p>{{ form.accountname }}</p>
+
+            <p>Type Filter: {{ form.type_filter }}</p>
+            <p>Item Rarity{{ form.Item_rarity}}</p>
+            <p>Item Category: {{ form. }}</p>
+            <p>{{ form.accountname }} {{ form.item_name}}</p>
+            <p>Item Price: {{ form.Item_price_currency }} {{ form.Item_price_quantity }}</p>
+            <p>Ilvl: {{ form.Item_level }} Identified: {{ form.Is_Identified }}</p>
+            <p>Item Base : {{form.Item_base}}</p>
+            <p>Item Sockets: {{form.Item_sockets}}</p>
+            <p>Requirements: {{ form.Item_req_Lvl }} {{ form.Item_req_Strength}} {{ form.Item_req_Intelligence}} {{ form.Item_req_Dexterity}}</p>
+            <p>Implicits: </p>
+            <p>Prefixes: </p>
+            <p>Suffixes: </p>
           </div>
           <p></p>
         </div>
-        <input type="submit" value="OK">
+        <input type="submit" value="Search">
       </form>
+      <p>
+        HOW TO SEARCH: <br>
+        Input all the info about an item you want then hit search <br>
+        for Item Mods should closly resemble how you would see that mod on an item <br>
+        for exaple: <br>
+        fire resistance 50% could aslo be fire resistance 50 or 50 fire resistance <br>
+        IMPORTANT NOTE ABOUT ABOVE EXAPLE, MUST INCLUDE KEY WORDS <br>
+        SUCH AS FIRE, RESISANCE AND VALUES <br>
+      </p>
     </div>
   </div>
 

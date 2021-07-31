@@ -12,13 +12,15 @@ Account name
 Price
 Item Name
 Identified
-
+Item Level
+base type
+sockets
+requirements lvl strngth dex int
 
 4 pre 4 suff 3 imp
 explicitMods find a way to incorperate ranges like phys damage 1-10000
-Item Level
-base type
 properties
-sockets
-requirements
+
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
