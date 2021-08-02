@@ -131,7 +131,7 @@ class buyform(forms.Form):
     ############# Weapon Filter ##################
     ############################################
     # there is prob a bettter way but django forms are confsing
-    # Finish putting weapon forms in
+    # Finish putting weapon forms in tommorow
     weapon_damage_min = forms.CharField(
         label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     weapon_damage_max = forms.CharField(
