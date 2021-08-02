@@ -14,10 +14,11 @@
           <div class="col">
             <p>If N/A leave blank</p>
             <p>Type Filter</p>
-            <p>Item Category: {{ form.Item_category }}</p>
-            <p>Item Rarity{{ form.Item_rarity}}</p>
+            <p>Item Category: {{ form.type_category }}</p>
+            <p>Item Rarity{{ form.type_rarity}}</p>
             <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-            <p>Damage:__ __| APS: __ __| Crit Chance: __ __</p>
+            <p>Weapon Filter</p>
+            <p>Damage: {{ form.weapon_damage_max}}{{form.weapon_damage_min}}| APS: __ __| Crit Chance: __ __</p>
             <p>DPS: __ __| PDPS: __ __| EDPS: __ __</p>
             <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
             <p>Armour: __ __| Evasion: __ __| ES: __ __</p>

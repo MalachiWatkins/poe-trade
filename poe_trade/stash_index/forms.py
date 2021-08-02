@@ -122,14 +122,45 @@ class buyform(forms.Form):
     ############################################
     ############### Type Filter ##################
     ############################################
-
-    Item_rarity = forms.CharField(
+    type_rarity = forms.CharField(
         widget=forms.Select(choices=rarity_choices))
-    Item_category = forms.CharField(
+    type_category = forms.CharField(
         widget=forms.Select(choices=item_category))
+
     ############################################
     ############# Weapon Filter ##################
     ############################################
+    # there is prob a bettter way but django forms are confsing
+    # Finish putting weapon forms in
+    weapon_damage_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_damage_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    #
+    weapon_aps_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_aps_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    weapon_crit_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_crit_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    weapon_dps_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_dps_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    weapon_pdps_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_pdps_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    weapon_edps_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_edps_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
 
     ############################################
     ############### Armour #####################
