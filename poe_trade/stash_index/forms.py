@@ -110,6 +110,17 @@ identified = (
     ('ture', 'ture'),
     ('False', 'False'),
 )
+map_region_choice = (
+    ('any', 'any'),
+    ('haewak_hamlset', 'Haewak Hamlet'),
+    ('tirns_end', "Tirn's End"),
+    ('lex_proxima', 'Lex Proxima'),
+    ('lex_ejoris', 'Lex Ejoris'),
+    ('new_vastir', 'New Vastir'),
+    ('glennach_cairins', 'Glennach Cairins'),
+    ('valdos_rest', 'Valdos Rest'),
+    ('lira_arthain', 'Lira Arthain'),
+)
 
 
 class buyform(forms.Form):
@@ -131,7 +142,6 @@ class buyform(forms.Form):
     ############# Weapon Filter ##################
     ############################################
     # there is prob a bettter way but django forms are confsing
-    # Finish putting weapon forms in tommorow
     weapon_damage_min = forms.CharField(
         label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     weapon_damage_max = forms.CharField(
@@ -165,6 +175,30 @@ class buyform(forms.Form):
     ############################################
     ############### Armour #####################
     ############################################
+    armour_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    armour_evasion_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_evasion_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    armour_es_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_es_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    armour_ward_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_ward_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    #
+    armour_block_max = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_block_min = forms.CharField(
+        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
 
     ############################################
     ############### Sockets #####################
@@ -191,6 +225,16 @@ class buyform(forms.Form):
     ############################################
     ################ Map ######################
     ############################################
+    map_tier = forms.CharField(label='ireqdex', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': ''}))
+    map_tier.widget.attrs.update(size='3')
+    map_area_level = forms.CharField(label='ireqdex', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': ''}))
+    map_area_level.widget.attrs.update(size='3')
+    map_region = forms.CharField(
+        widget=forms.Select(choices=map_region_choice))
+    map_blight = forms.CharField(
+        widget=forms.Select(choices=identified))
 
     ############################################
     ############## MISC #######################
@@ -198,8 +242,11 @@ class buyform(forms.Form):
     Item_level = forms.CharField(label='', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
     Item_level.widget.attrs.update(size='2')
-
     Is_identified = forms.CharField(
+        widget=forms.Select(choices=identified))
+    misc_fractured = forms.CharField(
+        widget=forms.Select(choices=identified))
+    misc_corrupted = forms.CharField(
         widget=forms.Select(choices=identified))
     ############################################
     ################ Trade ######################
@@ -215,3 +262,4 @@ class buyform(forms.Form):
     ############################################
     ################## Mods ####################
     ############################################
+    # 4 prefix 4 suffix 3 implicits
