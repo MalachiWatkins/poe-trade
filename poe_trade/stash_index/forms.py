@@ -262,5 +262,30 @@ class buyform(forms.Form):
     ############################################
     ################## Mods ####################
     ############################################
+    mods_implicit_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Implicit 1', 'size': '40'}))
+    mods_implicit_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Implicit 2', 'size': '40'}))
+    mods_implicit_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Implicit 3', 'size': '40'}))
+    #
+    mods_prefix_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Prefix 1', 'size': '40'}))
+    mods_prefix_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Prefix 2', 'size': '40'}))
+    mods_prefix_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Prefix 3', 'size': '40'}))
+    mods_prefix_4 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Prefix 4', 'size': '40'}))
+    #
+    mods_suffix_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Suffix 1', 'size': '40'}))
+    mods_suffix_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Suffix 2', 'size': '40'}))
+    mods_suffix_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Suffix 3', 'size': '40'}))
+    mods_suffix_4 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Suffix 4', 'size': '40'}))
+
     # 4 prefix 4 suffix 3 implicits
  # add when i get home
