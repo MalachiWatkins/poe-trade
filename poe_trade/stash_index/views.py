@@ -94,8 +94,9 @@ def search(request):
     if request.method == 'POST':
         form = buyform(request.POST)
         if form.is_valid():
-            accname = form.cleaned_data['accountname']
-            return HttpResponseRedirect('/tanks/')
+            # ready for a bad time buddy well get ready HAVE FUN GETTING ALL THE DATA FROM THE FORMS
+            # and dealing with all the edge cases BUCKO GG well played
+            return HttpResponseRedirect('')
     else:
         form = buyform()
     return render(request, 'search.html', {'form': form})

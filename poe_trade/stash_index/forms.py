@@ -10,6 +10,7 @@ COLLECTION_CHOICES = (
     ('Armour ', 'Armour'),
 )
 Currency_choice = (
+    ('any', 'Any'),
     ('Alteration', 'Alteration'),
     ('Fusing', 'Fusing'),
     ('Alchemy', 'Alchemy'),
@@ -124,168 +125,165 @@ map_region_choice = (
 
 
 class buyform(forms.Form):
-    custom_id = forms.CharField(label='Custom ID', max_length=100, widget=forms.TextInput(
+    custom_id = forms.CharField(required=False, label='Custom ID', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Custom Id'}))
 
-    collection_type = forms.CharField(label='What kind of item is this?',
+    collection_type = forms.CharField(required=False, label='What kind of item is this?',
                                       widget=forms.Select(choices=COLLECTION_CHOICES))
 
     ############################################
     ############### Type Filter ##################
     ############################################
-    type_rarity = forms.CharField(
-        widget=forms.Select(choices=rarity_choices))
-    type_category = forms.CharField(
-        widget=forms.Select(choices=item_category))
+    type_rarity = forms.CharField(required=False,
+                                  widget=forms.Select(choices=rarity_choices))
+    type_category = forms.CharField(required=False,
+                                    widget=forms.Select(choices=item_category))
 
     ############################################
     ############# Weapon Filter ##################
     ############################################
     # there is prob a bettter way but django forms are confsing
-    weapon_damage_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
-    weapon_damage_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_damage_min = forms.CharField(required=False,
+                                        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_damage_max = forms.CharField(required=False,
+                                        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
     #
-    weapon_aps_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    weapon_aps_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_aps_max = forms.CharField(required=False,
+                                     label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_aps_min = forms.CharField(required=False,
+                                     label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    weapon_crit_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    weapon_crit_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_crit_max = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_crit_min = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    weapon_dps_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    weapon_dps_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_dps_max = forms.CharField(required=False,
+                                     label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_dps_min = forms.CharField(required=False,
+                                     label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    weapon_pdps_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    weapon_pdps_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_pdps_max = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_pdps_min = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    weapon_edps_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    weapon_edps_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    weapon_edps_max = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    weapon_edps_min = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
 
     ############################################
     ############### Armour #####################
     ############################################
-    armour_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    armour_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    armour_max = forms.CharField(required=False,
+                                 label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_min = forms.CharField(required=False,
+                                 label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    armour_evasion_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    armour_evasion_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    armour_evasion_max = forms.CharField(required=False,
+                                         label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_evasion_min = forms.CharField(required=False,
+                                         label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    armour_es_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    armour_es_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    armour_es_max = forms.CharField(required=False,
+                                    label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_es_min = forms.CharField(required=False,
+                                    label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    armour_ward_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    armour_ward_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    armour_ward_max = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_ward_min = forms.CharField(required=False,
+                                      label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
     #
-    armour_block_max = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
-    armour_block_min = forms.CharField(
-        label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
+    armour_block_max = forms.CharField(required=False,
+                                       label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MAX', 'size': '4'}))
+    armour_block_min = forms.CharField(required=False,
+                                       label='', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'MIN', 'size': '4'}))
 
     ############################################
     ############### Sockets #####################
     ############################################
-    Item_sockets = forms.CharField(label='isockets', max_length=100, widget=forms.TextInput(
+    Item_sockets = forms.CharField(required=False, label='isockets', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'EX: B-B-B R-R'}))
 
     ############################################
     ############# Requirements ###################
     ############################################
-    Item_req_Lvl = forms.CharField(label='ireq', max_length=100, widget=forms.TextInput(
+    Item_req_Lvl = forms.CharField(required=False, label='ireq', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'LVL'}))
     Item_req_Lvl.widget.attrs.update(size='3')
-    Item_req_Strength = forms.CharField(label='ireqstr', max_length=100, widget=forms.TextInput(
+    Item_req_Strength = forms.CharField(required=False, label='ireqstr', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'STR'}))
     Item_req_Strength.widget.attrs.update(size='3')
-    Item_req_Intelligence = forms.CharField(label='ireqint', max_length=100, widget=forms.TextInput(
+    Item_req_Intelligence = forms.CharField(required=False, label='ireqint', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'INT'}))
     Item_req_Intelligence.widget.attrs.update(size='3')
-    Item_req_Dexterity = forms.CharField(label='ireqdex', max_length=100, widget=forms.TextInput(
+    Item_req_Dexterity = forms.CharField(required=False, label='ireqdex', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'DEX'}))
     Item_req_Dexterity.widget.attrs.update(size='3')
 
     ############################################
     ################ Map ######################
     ############################################
-    map_tier = forms.CharField(label='ireqdex', max_length=100, widget=forms.TextInput(
+    map_tier = forms.CharField(required=False, label='ireqdex', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': ''}))
     map_tier.widget.attrs.update(size='3')
-    map_area_level = forms.CharField(label='ireqdex', max_length=100, widget=forms.TextInput(
+    map_area_level = forms.CharField(required=False, label='ireqdex', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': ''}))
     map_area_level.widget.attrs.update(size='3')
-    map_region = forms.CharField(
-        widget=forms.Select(choices=map_region_choice))
-    map_blight = forms.CharField(
-        widget=forms.Select(choices=identified))
+    map_region = forms.CharField(required=False,
+                                 widget=forms.Select(choices=map_region_choice))
+    map_blight = forms.CharField(required=False,
+                                 widget=forms.Select(choices=identified))
 
     ############################################
     ############## MISC #######################
     ############################################
-    Item_level = forms.CharField(label='', max_length=100, widget=forms.TextInput(
+    Item_level = forms.CharField(required=False, label='', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
     Item_level.widget.attrs.update(size='2')
-    Is_identified = forms.CharField(
-        widget=forms.Select(choices=identified))
-    misc_fractured = forms.CharField(
-        widget=forms.Select(choices=identified))
-    misc_corrupted = forms.CharField(
-        widget=forms.Select(choices=identified))
+    Is_identified = forms.CharField(required=False,
+                                    widget=forms.Select(choices=identified))
+    misc_fractured = forms.CharField(required=False,
+                                     widget=forms.Select(choices=identified))
+    misc_corrupted = forms.CharField(required=False,
+                                     widget=forms.Select(choices=identified))
     ############################################
     ################ Trade ######################
     ############################################
-    accountname = forms.CharField(label='account name', max_length=100, widget=forms.TextInput(
+    accountname = forms.CharField(required=False, label='accountname', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Account Name'}))
-    Item_price_currency = forms.CharField(label='Item Price',
+    Item_price_currency = forms.CharField(required=False, label='Item Price',
                                           widget=forms.Select(choices=Currency_choice))
 
-    Item_price_quantity = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    Item_price_quantity = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
     Item_price_quantity.widget.attrs.update(size='2')
     ############################################
     ################## Mods ####################
     ############################################
-    mods_implicit_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_implicit_1 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Implicit 1', 'size': '40'}))
-    mods_implicit_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_implicit_2 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Implicit 2', 'size': '40'}))
-    mods_implicit_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_implicit_3 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Implicit 3', 'size': '40'}))
     #
-    mods_prefix_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_prefix_1 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Prefix 1', 'size': '40'}))
-    mods_prefix_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_prefix_2 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Prefix 2', 'size': '40'}))
-    mods_prefix_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_prefix_3 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Prefix 3', 'size': '40'}))
-    mods_prefix_4 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_prefix_4 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Prefix 4', 'size': '40'}))
     #
-    mods_suffix_1 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_suffix_1 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Suffix 1', 'size': '40'}))
-    mods_suffix_2 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_suffix_2 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Suffix 2', 'size': '40'}))
-    mods_suffix_3 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_suffix_3 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Suffix 3', 'size': '40'}))
-    mods_suffix_4 = forms.CharField(label='Item name', max_length=100, widget=forms.TextInput(
+    mods_suffix_4 = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Suffix 4', 'size': '40'}))
-
-    # 4 prefix 4 suffix 3 implicits
- # add when i get home
