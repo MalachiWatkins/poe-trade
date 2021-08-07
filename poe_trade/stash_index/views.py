@@ -13,7 +13,7 @@ from django.http import HttpResponse
 from Atlas_Connection import Atlas_Connect
 from django.views.decorators.csrf import ensure_csrf_cookie
 from .forms import buyform
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 cluster = MongoClient(Atlas_Connect)
@@ -94,9 +94,78 @@ def search(request):
     if request.method == 'POST':
         form = buyform(request.POST)
         if form.is_valid():
+            # Grabs all the form data
+            form_dict = {
+                # Type Forms
+                'type_rarity': form.cleaned_data['type_rarity'],
+                'type_category': form.cleaned_data['type_rarity'],
+                # Weapon Forms
+                'weapon_damage_max': form.cleaned_data['weapon_damage_max'],
+                'weapon_damage_min': form.cleaned_data['weapon_damage_min'],
+                'weapon_aps_max': form.cleaned_data['weapon_aps_max'],
+                'weapon_aps_min': form.cleaned_data['weapon_aps_min'],
+                'weapon_crit_max': form.cleaned_data['weapon_crit_max'],
+                'weapon_crit_min': form.cleaned_data['weapon_crit_min'],
+                'weapon_dps_max': form.cleaned_data['weapon_dps_max'],
+                'weapon_dps_min': form.cleaned_data['weapon_dps_min'],
+                'weapon_pdps_max': form.cleaned_data['weapon_pdps_max'],
+                'weapon_pdps_min': form.cleaned_data['weapon_pdps_min'],
+                'weapon_edps_max': form.cleaned_data['weapon_edps_max'],
+                'weapon_edps_min': form.cleaned_data['weapon_edps_min'],
+                # Armour Forms
+                'armour_max': form.cleaned_data['armour_max'],
+                'armour_min': form.cleaned_data['armour_min'],
+                'armour_evasion_max': form.cleaned_data['armour_evasion_max'],
+                'armour_evasion_min': form.cleaned_data['armour_evasion_min'],
+                'armour_es_max': form.cleaned_data['armour_es_max'],
+                'armour_es_min': form.cleaned_data['armour_es_min'],
+                'armour_ward_max': form.cleaned_data['armour_ward_max'],
+                'armour_ward_min': form.cleaned_data['armour_ward_min'],
+                'armour_block_max': form.cleaned_data['armour_block_max'],
+                'armour_block_min': form.cleaned_data['armour_block_min'],
+                # Sockets Forms
+                'Item_sockets': form.cleaned_data['Item_sockets'],
+                # Requirements Forms
+                'Item_req_Lvl': form.cleaned_data['Item_req_Lvl'],
+                'Item_req_Strength': form.cleaned_data['Item_req_Strength'],
+                'Item_req_Intelligence': form.cleaned_data['Item_req_Intelligence'],
+                'Item_req_Dexterity': form.cleaned_data['Item_req_Dexterity'],
+                # Map Forms
+                'map_tier': form.cleaned_data['map_tier'],
+                'map_area_level': form.cleaned_data['map_area_level'],
+                'map_region': form.cleaned_data['map_region'],
+                'map_blight': form.cleaned_data['map_blight'],
+                # Misc Forms
+                'Item_level': form.cleaned_data['Item_level'],
+                'Is_identified': form.cleaned_data['Is_identified'],
+                'misc_fractured': form.cleaned_data['misc_fractured'],
+                'misc_corrupted': form.cleaned_data['misc_corrupted'],
+                # Trade
+                'accountname': form.cleaned_data['accountname'],
+                'Item_price_currency': form.cleaned_data['Item_price_currency'],
+                'Item_price_quantity': form.cleaned_data['Item_price_quantity'],
+                # Mods
+                'mods_implicit_1': form.cleaned_data['mods_implicit_1'],
+                'mods_implicit_2': form.cleaned_data['mods_implicit_2'],
+                'mods_implicit_3': form.cleaned_data['mods_implicit_3'],
+                #
+                'mods_prefix_1': form.cleaned_data['mods_prefix_1'],
+                'mods_prefix_2': form.cleaned_data['mods_prefix_2'],
+                'mods_prefix_3': form.cleaned_data['mods_prefix_3'],
+                'mods_prefix_4': form.cleaned_data['mods_prefix_4'],
+                #
+                'mods_suffix_1': form.cleaned_data['mods_suffix_1'],
+                'mods_suffix_2': form.cleaned_data['mods_suffix_2'],
+                'mods_suffix_3': form.cleaned_data['mods_suffix_3'],
+                'mods_suffix_4': form.cleaned_data['mods_suffix_4'],
+
+
+            }
+
             # ready for a bad time buddy well get ready HAVE FUN GETTING ALL THE DATA FROM THE FORMS
             # and dealing with all the edge cases BUCKO GG well played
-            return HttpResponseRedirect('')
+
+            return HttpResponseRedirect('/gview/formsub')
     else:
         form = buyform()
     return render(request, 'search.html', {'form': form})
