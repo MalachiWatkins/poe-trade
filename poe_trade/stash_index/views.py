@@ -98,7 +98,7 @@ def search(request):
             form_dict = {
                 # Type Forms
                 'type_rarity': form.cleaned_data['type_rarity'],
-                'type_category': form.cleaned_data['type_rarity'],
+                'type_category': form.cleaned_data['type_category'],
                 # Weapon Forms
                 'weapon_damage_max': form.cleaned_data['weapon_damage_max'],
                 'weapon_damage_min': form.cleaned_data['weapon_damage_min'],
@@ -161,11 +161,22 @@ def search(request):
 
 
             }
+            # Need to make a query for mongo db with all the above form data correlating to how it its in the database
+            # Type
+            # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
 
+            # weapon
+            # modifiy api_index caclulate dps and add another key for dps
+        #    weapon_aps_max weapon_aps_min
+            dynamic_post = {}
+            if form_dict['accountname']:
+                print(form_dict['accountname'])
+            else:
+                print('acc name empty ')
             # ready for a bad time buddy well get ready HAVE FUN GETTING ALL THE DATA FROM THE FORMS
             # and dealing with all the edge cases BUCKO GG well played
 
-            return HttpResponseRedirect('/gview/formsub')
+            return render(request, 'search_results.html', {'form': form})
     else:
         form = buyform()
     return render(request, 'search.html', {'form': form})
