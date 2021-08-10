@@ -161,20 +161,18 @@ def search(request):
 
 
             }
-            # Need to make a query for mongo db with all the above form data correlating to how it its in the database
-            # Type
-            # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
-
-            # weapon
+            # TODO
             # modifiy api_index caclulate dps and add another key for dps
-        #    weapon_aps_max weapon_aps_min
-            dynamic_post = {}
-            if form_dict['accountname']:
-                print(form_dict['accountname'])
-            else:
-                print('acc name empty ')
-            # ready for a bad time buddy well get ready HAVE FUN GETTING ALL THE DATA FROM THE FORMS
-            # and dealing with all the edge cases BUCKO GG well played
+            # Need to make a query for mongo db with all the above form data correlating to how it its in the database
+            # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
+            # OUTLINE
+            #            base form dict test very form to see if has a valid imput if it has an imput create another dict with only imputs that need to be searched for
+            #            next take that dict and convert it into another dict with keys converted to mongo search query then its as simple as
+            #            taking the keys and putting them in the query
+
+            # for x in mycol.find({}, {"_id": 0}):
+            #     print(x)
+            # ({'qty': {$gt : 50 , $lt : 60}})
 
             return render(request, 'search_results.html', {'form': form})
     else:
