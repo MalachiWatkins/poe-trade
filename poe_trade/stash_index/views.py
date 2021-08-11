@@ -173,7 +173,17 @@ def search(request):
             # for x in mycol.find({}, {"_id": 0}):
             #     print(x)
             # ({'qty': {$gt : 50 , $lt : 60}})
+            def form_validation(form_dict):
+                valid_form_dict = {}
+                for key in form_dict:
+                    if key == ''
 
+                    elif key == any
+
+                    else:
+                        pass
+                form_dict
+                return
             return render(request, 'search_results.html', {'form': form})
     else:
         form = buyform()
