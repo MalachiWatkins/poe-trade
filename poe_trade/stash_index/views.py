@@ -166,7 +166,7 @@ def search(request):
             # Need to make a query for mongo db with all the above form data correlating to how it its in the database
             # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
             # OUTLINE
-            #            base form dict test very form to see if has a valid imput if it has an imput create another dict with only imputs that need to be searched for
+            #   X         base form dict test very form to see if has a valid imput if it has an imput create another dict with only imputs that need to be searched for
             #            next take that dict and convert it into another dict with keys converted to mongo search query then its as simple as
             #            taking the keys and putting them in the query
 
@@ -176,14 +176,15 @@ def search(request):
             def form_validation(form_dict):
                 valid_form_dict = {}
                 for key in form_dict:
-                    if key == ''
-
-                    elif key == any
-
+                    if form_dict[key] == '':
+                        null = 'null'
+                    elif form_dict[key] == 'any':
+                        null = 'null'
                     else:
-                        pass
-                form_dict
+                        valid_form_dict[key] = form_dict[key]
+                print(valid_form_dict)
                 return
+            form_validation(form_dict=form_dict)
             return render(request, 'search_results.html', {'form': form})
     else:
         form = buyform()
