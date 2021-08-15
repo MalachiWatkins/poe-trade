@@ -166,13 +166,10 @@ def search(request):
             # Need to make a query for mongo db with all the above form data correlating to how it its in the database
             # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
             # OUTLINE
-            #   X         base form dict test very form to see if has a valid imput if it has an imput create another dict with only imputs that need to be searched for
-            #            next take that dict and convert it into another dict with keys converted to mongo search query then its as simple as
-            #            taking the keys and putting them in the query
+ # Need to grab all documents form collection
+ # then check if the document meets all the search query requirements
+ # then store the document in context
 
-            # for x in mycol.find({}, {"_id": 0}):
-            #     print(x)
-            # ({'qty': {$gt : 50 , $lt : 60}})
             def form_validation(form_dict):
                 valid_form_dict = {}
                 for key in form_dict:
@@ -182,8 +179,36 @@ def search(request):
                         null = 'null'
                     else:
                         valid_form_dict[key] = form_dict[key]
-                print(valid_form_dict)
+                # Search query creation
+                # valid_form_dict
+                for valid_key in valid_form_dict:
+                    key_list = ['type_rarity', 'type_category', 'weapon_damage_max', 'weapon_damage_min', 'weapon_aps_max', 'weapon_aps_min', 'weapon_crit_max',
+                                'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
+
                 return
+                # collections = {
+                #     'currency': currencyCollection,
+                #     'cards': cardsCollection,
+                #     'accessories': accessoriesCollection,
+                #     'gems': gemsCollection,
+                #     'jewels': jewelsCollection,
+                #     'maps': mapsCollection,
+                #     'weapons': weaponsCollection,
+                #     'armour': armourCollection,
+                #     'flasks': flaskCollection
+                # }
+                #    Working On query
+                # collection_list = ['flasks', 'armour',  'weapons', 'maps',
+                #                    'jewels', 'gems', 'accessories', 'cards', 'currency']
+                # p = 0
+                # while p < len(collection_list):
+                #     print(collection_list[p])
+                #     p += 1
+                #     # for x in Itemdb.find():
+                #     #     print(x)
+                # for x in mycol.find({}, {"_id": 0}):
+                #     print(x)
+                # ({'qty': {$gt : 50 , $lt : 60}})
             form_validation(form_dict=form_dict)
             return render(request, 'search_results.html', {'form': form})
     else:
