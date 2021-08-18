@@ -141,7 +141,7 @@ def search(request):
                 'misc_fractured': form.cleaned_data['misc_fractured'],
                 'misc_corrupted': form.cleaned_data['misc_corrupted'],
                 # Trade
-                'accountname': form.cleaned_data['accountname'],
+                'accountName': form.cleaned_data['accountName'],
                 'Item_price_currency': form.cleaned_data['Item_price_currency'],
                 'Item_price_quantity': form.cleaned_data['Item_price_quantity'],
                 # Mods
@@ -184,31 +184,43 @@ def search(request):
                 for valid_key in valid_form_dict:
                     key_list = ['type_rarity', 'type_category', 'weapon_damage_max', 'weapon_damage_min', 'weapon_aps_max', 'weapon_aps_min', 'weapon_crit_max',
                                 'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
-                    collections = {
-                        'currency': currencyCollection,
-                        'cards': cardsCollection,
-                        'accessories': accessoriesCollection,
-                        'gems': gemsCollection,
-                        'jewels': jewelsCollection,
-                        'maps': mapsCollection,
-                        'weapons': weaponsCollection,
-                        'armour': armourCollection,
-                        'flasks': flaskCollection
-                    }
+
                 ########////////////////////////////////?#########
+                collections = {
+                    'currency': currencyCollection,
+                    'cards': cardsCollection,
+                    'accessories': accessoriesCollection,
+                    'gems': gemsCollection,
+                    'jewels': jewelsCollection,
+                    'maps': mapsCollection,
+                    'weapons': weaponsCollection,
+                    'armour': armourCollection,
+                    'flasks': flaskCollection
+                }
                 for collection in collections:
                     for x in collections[collection].find():
-                        once it gets done searching and adding all
+                        #  once it gets done searching and adding all
                         # x is an individual document that need to be checked against the search criteria
 
                         # NEED TO CHECK IF ALL CRITERA IS MET IF ONE IS NOT THEN POST IS NOT PUT INTO THE MATCH LIST
                         # A GOOD WAY TO DO IT WOULD PROBOBLY BE CHECK ALL THE CRITERA IF MET RETURN ture IF NOT
                         # RETURN False IF RETURN IS FALSE PASS IF NOT THE APPEND TO MATCH LIST
-                        if x['accountName'] == form_dict['accountname']:
-                            account_name = True
+                        # A GOOD WAY OF LOOPING ALL THE CRITERA THAT DONT NEED MODIFICATIONS TO FIND IN THE POST
+                        # CREATE A LIST OF ALL THE KEYS THAT DONT AND USE THAT LOOP THROUGH A LIST OF THEM IG THEY ARE IN valid_form_dict
 
-            #            print(x['accountName'])
-                        print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                        # non modified key list
+                        # no_mod_key = ['accountName', ' note',
+                        #               'stackSize', 'identified', ' ilvl', 'corrupted', 'fractured']
+                        # list_key = 0
+                        # while list_key < len(no_mod_key):
+                        #     print(no_mod_key[list_key])
+                        #     list_key += 1
+                        for key in valid_form_dict:
+                            if x[key] == valid_form_dict[key]:
+                                account_name = True
+                                print(valid_form_dict[key])
+                                print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
                 return
                 # p = 0
                 # while p < len(collection_list):
@@ -238,7 +250,7 @@ main_view_template = []
 
 
 def main_view(request, type, collection):
-    # edit navbar hrefs to put /sview first
+    # edit navbar hrefs to put / sview first
     if type == 'sview':
         main_view_template.append('view.html')
         all_view_list = ['currency', 'cards', 'jewel', 'map',

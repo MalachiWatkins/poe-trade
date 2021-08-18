@@ -252,7 +252,7 @@ class buyform(forms.Form):
     ############################################
     ################ Trade ######################
     ############################################
-    accountname = forms.CharField(required=False, label='accountname', max_length=100, widget=forms.TextInput(
+    accountName = forms.CharField(required=False, label='accountName', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Account Name'}))
     Item_price_currency = forms.CharField(required=False, label='Item Price',
                                           widget=forms.Select(choices=Currency_choice))
