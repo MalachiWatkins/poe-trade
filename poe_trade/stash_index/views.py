@@ -184,20 +184,32 @@ def search(request):
                 for valid_key in valid_form_dict:
                     key_list = ['type_rarity', 'type_category', 'weapon_damage_max', 'weapon_damage_min', 'weapon_aps_max', 'weapon_aps_min', 'weapon_crit_max',
                                 'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
-                return
-                # collections = {
-                #     'currency': currencyCollection,
-                #     'cards': cardsCollection,
-                #     'accessories': accessoriesCollection,
-                #     'gems': gemsCollection,
-                #     'jewels': jewelsCollection,
-                #     'maps': mapsCollection,
-                #     'weapons': weaponsCollection,
-                #     'armour': armourCollection,
-                #     'flasks': flaskCollection
-                # }
-                #    Working On query
+                    collections = {
+                        'currency': currencyCollection,
+                        'cards': cardsCollection,
+                        'accessories': accessoriesCollection,
+                        'gems': gemsCollection,
+                        'jewels': jewelsCollection,
+                        'maps': mapsCollection,
+                        'weapons': weaponsCollection,
+                        'armour': armourCollection,
+                        'flasks': flaskCollection
+                    }
+                ########////////////////////////////////?#########
+                for collection in collections:
+                    for x in collections[collection].find():
+                        once it gets done searching and adding all
+                        # x is an individual document that need to be checked against the search criteria
 
+                        # NEED TO CHECK IF ALL CRITERA IS MET IF ONE IS NOT THEN POST IS NOT PUT INTO THE MATCH LIST
+                        # A GOOD WAY TO DO IT WOULD PROBOBLY BE CHECK ALL THE CRITERA IF MET RETURN ture IF NOT
+                        # RETURN False IF RETURN IS FALSE PASS IF NOT THE APPEND TO MATCH LIST
+                        if x['accountName'] == form_dict['accountname']:
+                            account_name = True
+
+            #            print(x['accountName'])
+                        print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                return
                 # p = 0
                 # while p < len(collection_list):
                 #     print(collection_list[p])
@@ -208,24 +220,10 @@ def search(request):
                 #     print(x)
                 # ({'qty': {$gt : 50 , $lt : 60}})
             form_validation(form_dict=form_dict)
-            collections = {
-                'currency': currencyCollection,
-                'cards': cardsCollection,
-                'accessories': accessoriesCollection,
-                'gems': gemsCollection,
-                'jewels': jewelsCollection,
-                'maps': mapsCollection,
-                'weapons': weaponsCollection,
-                'armour': armourCollection,
-                'flasks': flaskCollection
-            }
+
             # loops through collections
             # get a list of all the search criteria that dont need to be modified work on them first then get the edge cases for the others
-            for collection in collections:
-                for x in collections[collection].find():
-                    # x is an individual document that need to be checked against the search criteria
-                    print(x)
-                    print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
             return render(request, 'search_results.html', {'form': form})
     else:
         form = buyform()
@@ -240,6 +238,7 @@ main_view_template = []
 
 
 def main_view(request, type, collection):
+    # edit navbar hrefs to put /sview first
     if type == 'sview':
         main_view_template.append('view.html')
         all_view_list = ['currency', 'cards', 'jewel', 'map',
