@@ -136,13 +136,13 @@ def search(request):
                 'map_region': form.cleaned_data['map_region'],
                 'map_blight': form.cleaned_data['map_blight'],
                 # Misc Forms
-                'Item_level': form.cleaned_data['Item_level'],
+                'ilvl': form.cleaned_data['ilvl'],
                 'Is_identified': form.cleaned_data['Is_identified'],
                 'misc_fractured': form.cleaned_data['misc_fractured'],
                 'misc_corrupted': form.cleaned_data['misc_corrupted'],
                 # Trade
                 'accountName': form.cleaned_data['accountName'],
-                'Item_price_currency': form.cleaned_data['Item_price_currency'],
+                'note': form.cleaned_data['note'],
                 'Item_price_quantity': form.cleaned_data['Item_price_quantity'],
                 # Mods
                 'mods_implicit_1': form.cleaned_data['mods_implicit_1'],
@@ -208,18 +208,25 @@ def search(request):
                         # A GOOD WAY OF LOOPING ALL THE CRITERA THAT DONT NEED MODIFICATIONS TO FIND IN THE POST
                         # CREATE A LIST OF ALL THE KEYS THAT DONT AND USE THAT LOOP THROUGH A LIST OF THEM IG THEY ARE IN valid_form_dict
 
-                        # non modified key list
-                        # no_mod_key = ['accountName', ' note',
-                        #               'stackSize', 'identified', ' ilvl', 'corrupted', 'fractured']
-                        # list_key = 0
-                        # while list_key < len(no_mod_key):
-                        #     print(no_mod_key[list_key])
-                        #     list_key += 1
-                        for key in valid_form_dict:
-                            if x[key] == valid_form_dict[key]:
-                                account_name = True
-                                print(valid_form_dict[key])
-                                print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                        # CHECK IF ALL THE CRITERA IS MET BELOW AND APPEND TRUE OR FALSE TO A LIST
+                        # THEN CHEK THE LIST IF ANY RETURN FALSE THEN PASS AND CHECK THE NEXT POST
+                        #        non modified key list
+                        no_mod_key = ['accountName',
+                                      'stackSize', 'identified', 'ilvl', 'corrupted', 'fractured']
+                        list_key = 0
+                        while list_key < len(no_mod_key):
+                            key = no_mod_key[list_key]
+                            try:
+                                if x[key] == str(valid_form_dict[key]):
+                                    print(x[key])
+                            except KeyError:
+                                pass
+                            list_key += 1
+                        # for key in valid_form_dict:
+                        #     if x[key] == valid_form_dict[key]:
+                        #         account_name = True
+                        #         print(valid_form_dict[key])
+                        #         print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
                 return
                 # p = 0

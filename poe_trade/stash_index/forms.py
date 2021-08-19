@@ -240,9 +240,9 @@ class buyform(forms.Form):
     ############################################
     ############## MISC #######################
     ############################################
-    Item_level = forms.CharField(required=False, label='', max_length=100, widget=forms.TextInput(
+    ilvl = forms.CharField(required=False, label='', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
-    Item_level.widget.attrs.update(size='2')
+    ilvl.widget.attrs.update(size='2')
     Is_identified = forms.CharField(required=False,
                                     widget=forms.Select(choices=identified))
     misc_fractured = forms.CharField(required=False,
@@ -254,8 +254,8 @@ class buyform(forms.Form):
     ############################################
     accountName = forms.CharField(required=False, label='accountName', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Account Name'}))
-    Item_price_currency = forms.CharField(required=False, label='Item Price',
-                                          widget=forms.Select(choices=Currency_choice))
+    note = forms.CharField(required=False, label='note',
+                           widget=forms.Select(choices=Currency_choice))
 
     Item_price_quantity = forms.CharField(required=False, label='Item name', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
