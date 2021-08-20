@@ -52,6 +52,7 @@ def data_processing(type):
                 pass
         processed_data.append(post_data)
         x += 1
+    print(processed_data)
     context['data'] = processed_data
     return
 
@@ -75,6 +76,7 @@ def allview(request):
 
 
 @ ensure_csrf_cookie
+# WIP
 def buyorder(request):
     if request.method == 'POST':
         form = buyform(request.POST)
@@ -211,6 +213,7 @@ def search(request):
                         # CHECK IF ALL THE CRITERA IS MET BELOW AND APPEND TRUE OR FALSE TO A LIST
                         # THEN CHEK THE LIST IF ANY RETURN FALSE THEN PASS AND CHECK THE NEXT POST
                         #        non modified key list
+                        t_f = []
                         no_mod_key = ['accountName',
                                       'stackSize', 'identified', 'ilvl', 'corrupted', 'fractured']
                         list_key = 0
@@ -219,10 +222,15 @@ def search(request):
                             key = no_mod_key[list_key]
                             try:
                                 if x[key] == str(valid_form_dict[key]):
-                                    print(x[key])
+                                    t_f.append(True)
+                                else:
+                                    t_f.append(False)
                             except KeyError:
                                 pass
                             list_key += 1
+
+                        if False not in t_f:
+                            print(x)
                         # for key in valid_form_dict:
                         #     if x[key] == valid_form_dict[key]:
                         #         account_name = True
