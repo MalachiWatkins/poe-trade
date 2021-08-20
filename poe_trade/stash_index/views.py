@@ -162,31 +162,22 @@ def search(request):
 
 
             }
-            # TODO
-            # modifiy api_index caclulate dps and add another key for dps
-            # Need to make a query for mongo db with all the above form data correlating to how it its in the database
-            # inorder to determin if an item is rare modifiy api_index to count number of explicit mods and add a key for rarity
-            # OUTLINE
- # Need to grab all documents form collection
- # then check if the document meets all the search query requirements
- # then store the document in context
 
-            def form_validation(form_dict):
-                valid_form_dict = {}
+            def Main_search(form_dict):  # main search function###
+                valid_form_dict = {}  # Creates an empty dictonary for all the search critera
                 for key in form_dict:
                     if form_dict[key] == '':
                         null = 'null'
                     elif form_dict[key] == 'any':
                         null = 'null'
                     else:
+                        # adds the filled critera
                         valid_form_dict[key] = form_dict[key]
-                # Search query creation
-                # valid_form_dict
-                for valid_key in valid_form_dict:
-                    key_list = ['type_rarity', 'type_category', 'weapon_damage_max', 'weapon_damage_min', 'weapon_aps_max', 'weapon_aps_min', 'weapon_crit_max',
-                                'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
 
-                ########////////////////////////////////?#########
+                #    key_list = ['type_rarity', 'type_category', 'weapon_damage_max', 'weapon_damage_min', 'weapon_aps_max', 'weapon_aps_min', 'weapon_crit_max',
+                #                'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
+
+                ########//////Find all the post with matching search data/////##########
                 matching_post = []
                 collections = {
                     'currency': currencyCollection,
@@ -201,12 +192,14 @@ def search(request):
                 }
                 for collection in collections:
                     for x in collections[collection].find():
-                        print(x)
-                        print(collection)
-                        print('!!!!!!!!!!!!!!!')
-                        t_f = []
+                        t_f = []  # List of the search critera that is not met this make is easier to determin that the post is not a match
+                        # print(x)
+                        # print(collection)   ## Debuging ##
+                        # print('!!!!!!!!!!!!!!!')
+                        true_or_false_mods = 'identified, corrupted, fractured'
+
                         no_mod_key = ['accountName',
-                                      'stackSize', 'identified', 'ilvl', 'corrupted', 'fractured']
+                                      'ilvl', 'name']
                         list_key = 0
                         # Account name and ilvl are done, need to get the rest returning true or false
                         while list_key < len(no_mod_key):
@@ -217,18 +210,12 @@ def search(request):
                             except KeyError:
                                 pass
                             list_key += 1
-
                         if False not in t_f:
                             matching_post.append(x)
-
                         context['data'] = matching_post
                 return
-
                 # ({'qty': {$gt : 50 , $lt : 60}})
             form_validation(form_dict=form_dict)
-
-            # loops through collections
-            # get a list of all the search criteria that dont need to be modified work on them first then get the edge cases for the others
 
             return render(request, 'view.html', context)
     else:
