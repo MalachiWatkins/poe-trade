@@ -52,7 +52,6 @@ def data_processing(type):
                 pass
         processed_data.append(post_data)
         x += 1
-    print(processed_data)
     context['data'] = processed_data
     return
 
@@ -188,6 +187,7 @@ def search(request):
                                 'weapon_crit_min', 'weapon_dps_max', 'weapon_dps_min', 'weapon_pdps_max', 'weapon_pdps_min', 'weapon_edps_max', 'weapon_edps_min']
 
                 ########////////////////////////////////?#########
+                matching_post = []
                 collections = {
                     'currency': currencyCollection,
                     'cards': cardsCollection,
@@ -201,18 +201,9 @@ def search(request):
                 }
                 for collection in collections:
                     for x in collections[collection].find():
-                        #  once it gets done searching and adding all
-                        # x is an individual document that need to be checked against the search criteria
-
-                        # NEED TO CHECK IF ALL CRITERA IS MET IF ONE IS NOT THEN POST IS NOT PUT INTO THE MATCH LIST
-                        # A GOOD WAY TO DO IT WOULD PROBOBLY BE CHECK ALL THE CRITERA IF MET RETURN ture IF NOT
-                        # RETURN False IF RETURN IS FALSE PASS IF NOT THE APPEND TO MATCH LIST
-                        # A GOOD WAY OF LOOPING ALL THE CRITERA THAT DONT NEED MODIFICATIONS TO FIND IN THE POST
-                        # CREATE A LIST OF ALL THE KEYS THAT DONT AND USE THAT LOOP THROUGH A LIST OF THEM IG THEY ARE IN valid_form_dict
-
-                        # CHECK IF ALL THE CRITERA IS MET BELOW AND APPEND TRUE OR FALSE TO A LIST
-                        # THEN CHEK THE LIST IF ANY RETURN FALSE THEN PASS AND CHECK THE NEXT POST
-                        #        non modified key list
+                        print(x)
+                        print(collection)
+                        print('!!!!!!!!!!!!!!!')
                         t_f = []
                         no_mod_key = ['accountName',
                                       'stackSize', 'identified', 'ilvl', 'corrupted', 'fractured']
@@ -221,22 +212,16 @@ def search(request):
                         while list_key < len(no_mod_key):
                             key = no_mod_key[list_key]
                             try:
-                                if x[key] == str(valid_form_dict[key]):
-                                    t_f.append(True)
-                                else:
+                                if x[key] != str(valid_form_dict[key]):
                                     t_f.append(False)
                             except KeyError:
                                 pass
                             list_key += 1
 
                         if False not in t_f:
-                            print(x)
-                        # for key in valid_form_dict:
-                        #     if x[key] == valid_form_dict[key]:
-                        #         account_name = True
-                        #         print(valid_form_dict[key])
-                        #         print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                            matching_post.append(x)
 
+                        context['data'] = matching_post
                 return
 
                 # ({'qty': {$gt : 50 , $lt : 60}})
@@ -245,7 +230,7 @@ def search(request):
             # loops through collections
             # get a list of all the search criteria that dont need to be modified work on them first then get the edge cases for the others
 
-            return render(request, 'search_results.html', {'form': form})
+            return render(request, 'view.html', context)
     else:
         form = buyform()
     return render(request, 'search.html', {'form': form})
