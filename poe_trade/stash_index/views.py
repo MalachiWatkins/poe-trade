@@ -230,14 +230,7 @@ def search(request):
                         #         print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
                 return
-                # p = 0
-                # while p < len(collection_list):
-                #     print(collection_list[p])
-                #     p += 1
-                #     # for x in Itemdb.find():
-                #     #     print(x)
-                # for x in mycol.find({}, {"_id": 0}):
-                #     print(x)
+
                 # ({'qty': {$gt : 50 , $lt : 60}})
             form_validation(form_dict=form_dict)
 
