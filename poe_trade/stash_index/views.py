@@ -214,6 +214,7 @@ def search(request):
                         no_mod_key = ['accountName',
                                       'stackSize', 'identified', 'ilvl', 'corrupted', 'fractured']
                         list_key = 0
+                        # Account name and ilvl are done, need to get the rest returning true or false
                         while list_key < len(no_mod_key):
                             key = no_mod_key[list_key]
                             try:
