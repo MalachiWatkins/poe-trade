@@ -138,7 +138,7 @@ def search(request):
                 'map_blight': form.cleaned_data['map_blight'],
                 # Misc Forms
                 'ilvl': form.cleaned_data['ilvl'],
-                'Is_identified': form.cleaned_data['Is_identified'],
+                'identified': form.cleaned_data['identified'],
                 'misc_fractured': form.cleaned_data['misc_fractured'],
                 'misc_corrupted': form.cleaned_data['misc_corrupted'],
                 # Trade
@@ -196,12 +196,11 @@ def search(request):
                         # print(x)
                         # print(collection)   ## Debuging ##
                         # print('!!!!!!!!!!!!!!!')
-                        true_or_false_mods = 'identified, corrupted, fractured'
 
                         no_mod_key = ['accountName',
                                       'ilvl', 'name']
                         list_key = 0
-                        # Account name and ilvl are done, need to get the rest returning true or false
+                        # Account name, Item Level, and name search
                         while list_key < len(no_mod_key):
                             key = no_mod_key[list_key]
                             try:
@@ -210,12 +209,27 @@ def search(request):
                             except KeyError:
                                 pass
                             list_key += 1
+                        true_or_false_mods = [
+                            'identified', 'corrupted', 'fractured']
+
+                        try:
+                            for critera in true_or_false_mods:
+                                if str(valid_form_dict[critera]) != str(x[critera]):
+                                    t_f.append(False)
+                        except KeyError:
+                            pass
+
+                        ###Check Criteria###
+
+                        # if all the search critera match then append to a match list for viewing
                         if False not in t_f:
+                            print(x)
                             matching_post.append(x)
+                        # Passes match list on to frontend
                         context['data'] = matching_post
                 return
                 # ({'qty': {$gt : 50 , $lt : 60}})
-            form_validation(form_dict=form_dict)
+            Main_search(form_dict=form_dict)
 
             return render(request, 'view.html', context)
     else:

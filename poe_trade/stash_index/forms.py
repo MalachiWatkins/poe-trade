@@ -106,9 +106,9 @@ item_category = (
     ('fossil', 'Fossil'),
     ('incubator', 'Incubator'),
 )
-identified = (
+true_false = (
     ('any', 'any'),
-    ('ture', 'ture'),
+    ('True', 'Ture'),
     ('False', 'False'),
 )
 map_region_choice = (
@@ -235,7 +235,7 @@ class buyform(forms.Form):
     map_region = forms.CharField(required=False,
                                  widget=forms.Select(choices=map_region_choice))
     map_blight = forms.CharField(required=False,
-                                 widget=forms.Select(choices=identified))
+                                 widget=forms.Select(choices=true_false))
 
     ############################################
     ############## MISC #######################
@@ -243,12 +243,12 @@ class buyform(forms.Form):
     ilvl = forms.CharField(required=False, label='', max_length=100, widget=forms.TextInput(
         attrs={'placeholder': '#'}))
     ilvl.widget.attrs.update(size='2')
-    Is_identified = forms.CharField(required=False,
-                                    widget=forms.Select(choices=identified))
+    identified = forms.CharField(required=False,
+                                 widget=forms.Select(choices=true_false))
     misc_fractured = forms.CharField(required=False,
-                                     widget=forms.Select(choices=identified))
+                                     widget=forms.Select(choices=true_false))
     misc_corrupted = forms.CharField(required=False,
-                                     widget=forms.Select(choices=identified))
+                                     widget=forms.Select(choices=true_false))
     ############################################
     ################ Trade ######################
     ############################################
