@@ -224,6 +224,29 @@ def search(request):
                                     t_f.append(False)
                         except KeyError:
                             pass
+                        # Note
+                        # Sometimes note is assigned a price like "6 exa" in that case search in the stash name
+                        try:
+                            # print(valid_form_dict['note'])
+                            # print(valid_form_dict['Item_price_quantity'])
+                            # print('~~~~~~~~~~~~~~~~~~~~~~~~')
+
+                            regex = r"(.*?)\s"
+
+                            note_str = valid_form_dict['note']
+                            stashname_str = valid_form_dict['stashname']
+                            matches = re.findall(
+                                regex, test_str, re.MULTILINE)
+                            match = matches
+                            print(match)
+                            # print(match)
+                            # print('!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                            # if condition:
+                            #     pass
+                            # else:
+                            #     pass
+                        except KeyError:
+                            pass
 
                         # if all the search critera match then append to a match list for viewing
                         if False not in t_f:
