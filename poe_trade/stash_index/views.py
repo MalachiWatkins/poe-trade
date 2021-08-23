@@ -137,12 +137,12 @@ def search(request):
                 'map_region': form.cleaned_data['map_region'],
                 'map_blight': form.cleaned_data['map_blight'],
                 # Misc Forms
-                'ilvl': form.cleaned_data['ilvl'],
-                'identified': form.cleaned_data['identified'],
-                'misc_fractured': form.cleaned_data['misc_fractured'],
-                'misc_corrupted': form.cleaned_data['misc_corrupted'],
+                'ilvl': form.cleaned_data['ilvl'],  # X
+                'identified': form.cleaned_data['identified'],  # X
+                'misc_fractured': form.cleaned_data['misc_fractured'],  # X
+                'misc_corrupted': form.cleaned_data['misc_corrupted'],  # X
                 # Trade
-                'accountName': form.cleaned_data['accountName'],
+                'accountName': form.cleaned_data['accountName'],  # done
                 'note': form.cleaned_data['note'],
                 'Item_price_quantity': form.cleaned_data['Item_price_quantity'],
                 # Mods
@@ -192,15 +192,21 @@ def search(request):
                 }
                 for collection in collections:
                     for x in collections[collection].find():
+                        # ORDER FOR SEARCH CRITERA
+                        # NOTE, BASETYPE, And SOCKETS
                         t_f = []  # List of the search critera that is not met this make is easier to determin that the post is not a match
                         # print(x)
                         # print(collection)   ## Debuging ##
                         # print('!!!!!!!!!!!!!!!')
 
+                        #########################
+                        ######Check Criteria#######
+                        #########################
                         no_mod_key = ['accountName',
-                                      'ilvl', 'name']
+                                      'ilvl']
                         list_key = 0
-                        # Account name, Item Level, and name search
+                        #//////////////######Account name and Item Level search######/////////////////#
+                        # Reason for doing things seaperate is because theses 3 are just strings
                         while list_key < len(no_mod_key):
                             key = no_mod_key[list_key]
                             try:
@@ -209,17 +215,15 @@ def search(request):
                             except KeyError:
                                 pass
                             list_key += 1
+                        #/////////////#######Trys all true or false mods#######////////////////#
                         true_or_false_mods = [
                             'identified', 'corrupted', 'fractured']
-
                         try:
                             for critera in true_or_false_mods:
                                 if str(valid_form_dict[critera]) != str(x[critera]):
                                     t_f.append(False)
                         except KeyError:
                             pass
-
-                        ###Check Criteria###
 
                         # if all the search critera match then append to a match list for viewing
                         if False not in t_f:
