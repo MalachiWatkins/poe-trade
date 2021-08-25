@@ -227,30 +227,16 @@ def search(request):
                         # Note
                         # Sometimes note is assigned a price like "6 exa" in that case search in the stash name
                         try:
-                            # print(valid_form_dict['note'])
-                            # print(valid_form_dict['Item_price_quantity'])
-                            # print('~~~~~~~~~~~~~~~~~~~~~~~~')
-
-                            regex = r"(.*?)\s"
-
-                            note_str = valid_form_dict['note']
-                            stashname_str = valid_form_dict['stashname']
-                            matches = re.findall(
-                                regex, test_str, re.MULTILINE)
-                            match = matches
-                            print(match)
-                            # print(match)
-                            # print('!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                            # if condition:
-                            #     pass
-                            # else:
-                            #     pass
+                            a = valid_form_dict['note']
+                            print(a)
                         except KeyError:
                             pass
-
+                            # regex = r"(.*?)\s"
+                            # # matches = re.findall(
+                            # #     regex, note_str, re.MULTILINE)
+                            # # match = matches
                         # if all the search critera match then append to a match list for viewing
                         if False not in t_f:
-                            print(x)
                             matching_post.append(x)
                         # Passes match list on to frontend
                         context['data'] = matching_post
